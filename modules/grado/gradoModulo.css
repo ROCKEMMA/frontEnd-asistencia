@@ -1,0 +1,15 @@
+.div-grado{
+   width: 100%;
+   max-width: 300px;
+   color: rgb(0, 0, 0);
+   border:1px  solid #11100f;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.a{
+    background-color: aquamarine;
+}
+.b{
+    background-color: red;
+}
