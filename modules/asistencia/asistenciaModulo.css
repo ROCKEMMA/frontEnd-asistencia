@@ -1,0 +1,36 @@
+.div-asistencia {
+    width: 100%;
+    max-width: 400px;
+    color: rgb(0, 0, 0);
+    border: 1px solid #11100f;
+    display: flex;
+    margin: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.texto-asisten {
+    margin:5px;
+}
+.div-cuadritos{
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    background-color: green;
+    display: flex;
+    margin-left: 50px;
+}
+
+.div-cuadrito2{
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    background-color:red;
+}
+
+.div-cuadrito3{
+    width: 20px;
+    height: 20px;
+    background-color: rgb(255, 225, 53);
+}
+
