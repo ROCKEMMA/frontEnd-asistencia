@@ -8,6 +8,8 @@
    align-items: center;
    font-size: 1.6rem;
    font-weight: 800;
+   cursor: pointer;
+   text-decoration: none;
 }
 .completado {
     background-color: #d4edda;
