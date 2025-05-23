@@ -1,22 +1,25 @@
 .div-asistencia {
     width: 100%;
-    max-width: 400px;
+    padding: 0 0.5rem;
+
     color: rgb(0, 0, 0);
     border: 1px solid #11100f;
-    display: flex;
-    margin: 5px;
-    justify-content: center;
+
+    display: grid;
+    grid-template-columns: 1fr repeat(3,auto);
     align-items: center;
+    gap: 0.5rem;
 }
 
 .texto-asisten {
-    margin:5px;
+    font-size: 1.2rem;
 }
 .div-cuadritos{
     width: 20px;
     height: 20px;
     margin: 5px;
-    background-color: green;
+    background-color: #b2f2bb;
+    border: 1px solid #2f9e44;
     display: flex;
     margin-left: 50px;
 }
@@ -25,12 +28,14 @@
     width: 20px;
     height: 20px;
     margin: 5px;
-    background-color:red;
+    background-color: #a5d8ff;
+    border: 1px solid #1971c2;
 }
 
 .div-cuadrito3{
     width: 20px;
     height: 20px;
-    background-color: rgb(255, 225, 53);
+    background-color: #ffd8a8;
+    border: 1px solid #f08c00 ;
 }
 

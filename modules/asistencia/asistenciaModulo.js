@@ -1,4 +1,8 @@
+import { cargarCSS } from "../../controles/controlCSS.js";
+
 export function moduloAsistencia(nombreDeAsistencia, estado) {
+    cargarCSS('../modules/asistencia/asistenciaModulo.css');
+
     // DIV DEL BLOQUE DE ASISTENCIA 
     let bloque2 = document.createElement('div');
     bloque2.className = `div-asistencia ${estado}`;
@@ -18,9 +22,10 @@ export function moduloAsistencia(nombreDeAsistencia, estado) {
     cuadro2.className = "div-cuadrito2";
     bloque2.appendChild(cuadro2);
 
-    let cuadro3 = document.createElement('div');
-    cuadro3.className = "div-cuadrito3";
-    bloque2.appendChild(cuadro3);
+    let imgCorreo = document.createElement('img');
+    imgCorreo.src = "../assets/icos/email_ico.svg";
+    imgCorreo.className = "img-correo";
+    bloque2.appendChild(imgCorreo);
 
     return bloque2;
 }
