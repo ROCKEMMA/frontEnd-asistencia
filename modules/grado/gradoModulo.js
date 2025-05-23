@@ -1,6 +1,7 @@
 export function moduloGrado(nombreGrado,estado){
     //div del bloque grado
-    let blque1 = document.createElement('div');
+    let blque1 = document.createElement('a');
+    blque1.href = "asistencia.html";
     blque1.className = `div-grado ${estado}`;
 
 

@@ -4,7 +4,17 @@
     box-sizing: border-box;
 }
 
+body {
+    width: 100%;
+    max-width: 40rem;
+    margin: auto;
+}
+
 html {
     font-size: 10px;
     font-family:monospace;
+}
+
+:root {
+    --naranja: #EEA63A;
 }
