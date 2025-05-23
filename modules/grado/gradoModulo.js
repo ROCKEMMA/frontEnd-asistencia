@@ -1,4 +1,8 @@
+import { cargarCSS } from "../../controles/controlCSS.js";
+
 export function moduloGrado(nombreGrado,estado){
+    cargarCSS('../modules/grado/gradoModulo.css');
+
     //div del bloque grado
     let blque1 = document.createElement('a');
     blque1.href = "asistencia.html";
