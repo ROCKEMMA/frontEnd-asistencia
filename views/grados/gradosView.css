@@ -1,5 +1,4 @@
 .section-grados {
-    height: 100vh;
     padding: 1rem;
     
     display: flex;
@@ -11,5 +10,5 @@
 .nombre-nivel {
     align-self: flex-start;
     font-size: 2rem;
-    margin: 2rem 0;
+    margin: 1rem 0;
 }

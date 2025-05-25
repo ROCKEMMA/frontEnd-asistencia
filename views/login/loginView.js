@@ -63,10 +63,35 @@ export function loginView() {
     boton.className = "login-button";
     div.appendChild(boton);
 
-    boton.addEventListener("click",()=>{
-        window.location.href = "dasboar.html";
+    // Manejador de evento básico
+    boton.addEventListener("click", async () => {
+        const email = entradaCorreo.value;
+        const password = entradaContrasenna.value;        
+
+        try {
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password })
+                
+            });
+
+            const data = await response.json();
+            console.log(data);
+            
+
+            if (data.success) {
+                // Redirección básica (sin manejo de roles aún)
+                window.location.href = "dasboar.html";
+            } else {
+                alert(data.error || "Error al iniciar sesión");
+            }
+        } catch (error) {
+            alert("Error de conexión: " + error.message);
+        }
     });
-    
 
     return div;
 }

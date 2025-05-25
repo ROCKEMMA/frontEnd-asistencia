@@ -1,7 +1,9 @@
-import { cargarCSS } from "../../controles/controlCSS.js";
+import { headerModulo } from "../../modules/header/headerModulo.js";
 import { moduloGrado } from "../../modules/grado/gradoModulo.js";
+import { cargarCSS } from "../../controles/controlCSS.js";
 
-function cargarGradosView(nivel){
+
+async function cargarGradosView(nivel) {
     cargarCSS('../views/grados/gradosView.css');
 
     let sectionGrados = document.createElement('section');
@@ -12,28 +14,34 @@ function cargarGradosView(nivel){
     nombreNivel.innerText = nivel;
     sectionGrados.appendChild(nombreNivel);
     
-    let grados = [
-        { nombre: "IV Computación", estado: true },
-        { nombre: "IV Diseño", estado: false },
-        { nombre: "IV Biología", estado: null },
-        { nombre: "IV Perito", estado: true },
-        { nombre: "V Computación", estado: true },
-        { nombre: "V Diseño", estado: null },
-        { nombre: "V Biología", estado: false },
-        { nombre: "V Perito", estado: null },
-        { nombre: "VI Perito", estado: true },
-        { nombre: "VI Magisterio", estado: false }
-    ];
+    try {
+        const response = await fetch("http://localhost:3000/grados");
+        const data = await response.json();
+        
+        if (!response.ok) throw new Error(data.message || "Error al cargar grados");
 
-    grados.forEach(element => {
-        let estado = element.estado === true ? "completado" : 
-             element.estado === false ? "no-completado" : 
-             "en-espera";
+        data.forEach(element => {
+/*             let estado = element.estado === true ? "completado" : 
+                 element.estado === false ? "no-completado" : 
+                 "en-espera"; */
+            let estado = null;
 
-        sectionGrados.appendChild(moduloGrado(element.nombre,estado));
-    });
+            sectionGrados.appendChild(moduloGrado(element.nombre, estado));
+        });
+
+    } catch (error) {
+        console.error("Error:", error);
+        // Mostrar mensaje de error en la UI
+        const errorElement = document.createElement('p');
+        errorElement.className = "error";
+        errorElement.textContent = "No se pudieron cargar los grados. Intenta más tarde.";
+        sectionGrados.appendChild(errorElement);
+    }
 
     return sectionGrados;
 }
 
-export { cargarGradosView }
+document.body.appendChild(headerModulo("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.TCcYPZkra7mTMPCWre3uagAAAA%26pid%3DApi&f=1&ipt=8f255ef1389d07972910aa50f4f5e2fa0a9cb54dbb3a090d9aa506d50a588d0f","Jossue Fuentes"));
+cargarGradosView("Grados").then(section => {
+    document.body.appendChild(section);
+});

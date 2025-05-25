@@ -1,13 +1,12 @@
 .login-container {
-    max-width: 400px;
+    max-width: 40rem;
     width: 90%;
     margin: auto;
     padding: 2rem;
-    background-color: #ffffff;
-    border-radius: 8px;
+    border-radius: 0.8rem;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem;
     min-height: 100vh;
     margin-top: 30%;
 }
@@ -15,8 +14,8 @@
 .login-title {
     text-align: center;
     color: #2d3748;
-    margin-bottom: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 .input-group {
@@ -28,14 +27,14 @@
 .input-label {
     font-weight: 600;
     color: #4a5568;
-    font-size: 0.9rem;
+    font-size: 1.6rem;
 }
 
 .input-field {
-    padding: 0.75rem;
+    padding: 1.2rem;
     border: 1px solid #e2e8f0;
-    border-radius: 4px;
-    font-size: 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.6rem;
     transition: all 0.2s ease;
 }
 
@@ -49,8 +48,7 @@
     text-align: center;
     color: #4299e1;
     text-decoration: none;
-    font-size: 0.9rem;
-    margin-top: -0.5rem;
+    font-size: 1.5rem;
     transition: color 0.2s ease;
 }
 
@@ -60,16 +58,15 @@
 }
 
 .login-button {
-    padding: 0.75rem;
-    background-color: #4299e1;
+    padding: 1.2rem;
+    background-color: #3366ff;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 0.4rem;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.6rem;
     cursor: pointer;
     transition: background-color 0.2s ease;
-    margin-top: 0.5rem;
 }
 
 .login-button:hover {
