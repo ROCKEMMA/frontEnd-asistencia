@@ -15,7 +15,7 @@ async function cargarGradosView(nivel) {
     sectionGrados.appendChild(nombreNivel);
     
     try {
-        const response = await fetch("http://localhost:3000/grados");
+        const response = await fetch("https://asistencia.jossuefuentes.space/grados");
         const data = await response.json();
         
         if (!response.ok) throw new Error(data.message || "Error al cargar grados");
