@@ -1,0 +1,33 @@
+.div-item {
+  display: flex;
+  align-items: center;
+  border: 1px solid #000; 
+  padding: 4px 10px;
+  border-radius: 4px;
+  width: 200px;
+  gap: 8px;
+  background-color: #fff; /
+}
+
+.icono-camisa {
+  width: 20px;
+  height: 20px;
+}
+
+.texto-item {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+  margin: 0;
+  order: 1;
+}
+
+.icono {
+  width: 20px;
+  height: 20px;
+  order: 2;
+}
+
+.a {
+  background-color: rgb(44, 207, 44);
+}

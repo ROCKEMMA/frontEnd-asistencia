@@ -1,6 +1,7 @@
 import { cargarCSS } from "../../controles/controlCSS.js";
 import { headerModulo } from "../../modules/header/headerModulo.js";
 import { moduloAsistencia } from "../../modules/asistencia/asistenciaModulo.js";
+import { itemModulo } from "../../modules/informe/itemInformeModulo.js";
 
 function asistenciaView(estadoAsistencia){
     cargarCSS("../views/asistencia/asistenciaView.css");
@@ -64,3 +65,4 @@ function asistenciaView(estadoAsistencia){
 let baseDeDatos = true;
 
 document.body.appendChild(asistenciaView(baseDeDatos));
+document.body.appendChild(itemModulo("uniforme incompleto ", ));
