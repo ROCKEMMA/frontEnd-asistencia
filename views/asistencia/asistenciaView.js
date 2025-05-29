@@ -1,6 +1,7 @@
 import { cargarCSS } from "../../controles/controlCSS.js";
 import { headerModulo } from "../../modules/header/headerModulo.js";
 import { moduloAsistencia } from "../../modules/asistencia/asistenciaModulo.js";
+import { moduloEliminar } from "../../modules/eliminar/eliminarModulo.js";
 
 function asistenciaView(estadoAsistencia){
     cargarCSS("../views/asistencia/asistenciaView.css");
@@ -64,3 +65,4 @@ function asistenciaView(estadoAsistencia){
 let baseDeDatos = true;
 
 document.body.appendChild(asistenciaView(baseDeDatos));
+document.body.appendChild(moduloEliminar("Eliminar Alumno" , "Nombre Apellido" , "se perderan todos los datos"));

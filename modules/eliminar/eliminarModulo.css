@@ -1,0 +1,46 @@
+.div-elimiAlumno {
+  max-width: 250px;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.titulo {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.div-nombre {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.texto-alumno-apellido {
+  font-size: 14px;
+  color: #333;
+}
+
+.cuerpo-eliminar {
+  border: 1px solid #ccc;
+  padding: 8px;
+  font-size: 13px;
+  border-radius: 4px;
+  height: 60px;
+  color: #d9534f; 
+  background-color: #fdfdfd;
+}
+
+.botondeEliminar {
+  align-self: flex-end; 
+  margin-top: 10px;
+  padding: 8px 14px;
+  background-color: #f8bfbf;
+  color: #a94442;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+}
