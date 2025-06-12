@@ -92,8 +92,9 @@ export function loginView() {
             });
 
             const data = await response.json();
+            console.log(data);
             
-            if (data.success) {
+            if (data.sesion) {
                 console.log(data);
                 localStorage.setItem("usuario", JSON.stringify(data));
                 setTimeout(() => {

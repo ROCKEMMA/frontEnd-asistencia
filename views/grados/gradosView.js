@@ -15,7 +15,11 @@ async function cargarGradosView(nivel) {
     sectionGrados.appendChild(nombreNivel);
     
     try {
-        const response = await fetch("http://localhost:3000/grados?tipo_usuario_id=2&nivel_id=1");
+        const usuario = JSON.parse(localStorage.getItem("usuario"));
+        let tipo_usuario = usuario.user.tipo_usuario_id;
+        let grado = usuario.user.grado_id;
+        
+        const response = await fetch(`http://localhost:3000/grados?tipo_usuario_id=${tipo_usuario}&nivel_id=${grado}`);
         const data = await response.json();
         
         if (!response.ok) throw new Error(data.message || "Error al cargar grados");
@@ -37,9 +41,6 @@ async function cargarGradosView(nivel) {
         errorElement.textContent = "No se pudieron cargar los grados. Intenta más tarde.";
         sectionGrados.appendChild(errorElement);
     }
-
-    const usuario = JSON.parse(localStorage.getItem("usuario"));
-    console.log(usuario);
 
     return sectionGrados;
 }
