@@ -1,0 +1,66 @@
+.div-General {
+    text-align: center;
+    margin: 20px;
+    padding: 10px;
+}
+
+.titulo-asistencia {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.contenedor-Img {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.grafica-general {
+    height: 100px;
+    max-width: 100%;
+}
+
+.div-imagenesGrados {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    justify-items: center;
+    max-width: 100%;
+}
+
+.contenedor-grado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grafico-circular {
+    width: 50px;
+    height: 50px;
+}
+
+.etiqueta-grado {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+/* 📱 Ajustes solo de tamaños en móviles, sin romper el diseño */
+@media (max-width: 600px) {
+    .grafico-circular {
+        width: 40px;
+        height: 40px;
+    }
+
+    .etiqueta-grado {
+        font-size: 12px;
+    }
+
+    .grafica-general {
+        height: 70px;
+    }
+
+    .titulo-asistencia {
+        font-size: 16px;
+    }
+}
