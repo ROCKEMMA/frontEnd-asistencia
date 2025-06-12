@@ -82,7 +82,8 @@ export function loginView() {
         const password = entradaContrasenna.value;        
 
         try {
-            const response = await fetch('https://asistencia.jossuefuentes.space/login', {
+            //const response = await fetch('https://asistencia.jossuefuentes.space/login', {
+            const response = await fetch('http://localhost:3000/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -91,11 +92,17 @@ export function loginView() {
             });
 
             const data = await response.json();
+            
             if (data.success) {
-                window.location.href = "dasboar.html";
+                console.log(data);
+                localStorage.setItem("usuario", JSON.stringify(data));
+                setTimeout(() => {
+                    window.location.href = "dasboar.html";
+                }, 100);
             } else {
                 alert(data.error || "Error al iniciar sesión");
             }
+
         } catch (error) {
             alert("Error de conexión: " + error.message);
         }
@@ -103,5 +110,4 @@ export function loginView() {
 
     return div;
 }
-
 document.body.appendChild(loginView());

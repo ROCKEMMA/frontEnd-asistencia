@@ -21,6 +21,14 @@ export function headerModulo(logo, nombreUsuario) {
     spanNombre.className = "user-name";
     userContainer.appendChild(spanNombre);
 
+    let logoutBtn = document.createElement('button');
+    logoutBtn.textContent = "Salir";
+    logoutBtn.className = "logout-btn";
+    logoutBtn.addEventListener("click", () => {
+        localStorage.removeItem("usuario");
+        window.location.href = "../index.html";
+    });
+    header.appendChild(logoutBtn);
 
     return header;
 }

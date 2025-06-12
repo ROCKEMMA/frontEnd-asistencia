@@ -15,7 +15,7 @@ async function cargarGradosView(nivel) {
     sectionGrados.appendChild(nombreNivel);
     
     try {
-        const response = await fetch("https://asistencia.jossuefuentes.space/grados");
+        const response = await fetch("http://localhost:3000/grados?tipo_usuario_id=2&nivel_id=1");
         const data = await response.json();
         
         if (!response.ok) throw new Error(data.message || "Error al cargar grados");
@@ -29,7 +29,7 @@ async function cargarGradosView(nivel) {
             sectionGrados.appendChild(moduloGrado(element.nombre, estado));
         });
 
-    } catch (error) {
+    } catch (error) { 
         console.error("Error:", error);
         // Mostrar mensaje de error en la UI
         const errorElement = document.createElement('p');
@@ -38,10 +38,14 @@ async function cargarGradosView(nivel) {
         sectionGrados.appendChild(errorElement);
     }
 
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    console.log(usuario);
+
     return sectionGrados;
 }
 
 document.body.appendChild(headerModulo("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.TCcYPZkra7mTMPCWre3uagAAAA%26pid%3DApi&f=1&ipt=8f255ef1389d07972910aa50f4f5e2fa0a9cb54dbb3a090d9aa506d50a588d0f","Jossue Fuentes"));
+
 cargarGradosView("Grados").then(section => {
     document.body.appendChild(section);
 });
