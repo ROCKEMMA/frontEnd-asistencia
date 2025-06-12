@@ -8,19 +8,25 @@ export function moduloAsistencia(nombreDeAsistencia, estado) {
     bloque2.className = `div-asistencia ${estado}`;
 
     // Texto del bloque de asistencia
-    let texto_asistencia = document.createElement('p'); // crear la etiqueta "variable"
-    texto_asistencia.className = "texto-asisten"; // nombre que se llama para el css 
-    texto_asistencia.innerText = nombreDeAsistencia; // es el contenido que se almacena en el parrafo
+    let texto_asistencia = document.createElement('p');
+    texto_asistencia.className = "texto-asisten";
+    texto_asistencia.innerText = nombreDeAsistencia;
     bloque2.appendChild(texto_asistencia);
 
     // ESTE SUB DIV ES PARA CREAAR LO QUE SON LOS CUADIRTROS 
-    let cuadro1 = document.createElement('div');
-    cuadro1.className = "div-cuadritos";
-    bloque2.appendChild(cuadro1);
+    let divAsistencia = document.createElement('div');
+    divAsistencia.className = "div-cuadritos";
+    //console.log(estado)
+    if(estado){
+        divAsistencia.classList.add("AAA");
+    }else {
+        divAsistencia.classList.add("BBB");
+    }
+    bloque2.appendChild(divAsistencia);
 
-    let cuadro2 = document.createElement('div');
-    cuadro2.className = "div-cuadrito2";
-    bloque2.appendChild(cuadro2);
+    let divUniforme = document.createElement('div');
+    divUniforme.className = "div-cuadrito2";
+    bloque2.appendChild(divUniforme);
 
     let imgCorreo = document.createElement('img');
     imgCorreo.src = "../assets/icos/email_ico.svg";
