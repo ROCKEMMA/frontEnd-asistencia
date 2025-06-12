@@ -3,6 +3,9 @@ import { cargarCSS } from "../../controles/controlCSS.js";
 export function headerModulo(logo, nombreUsuario) {
     cargarCSS('../modules/header/headerModulo.css');
 
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    console.log(usuario)
+
     let header = document.createElement('header');
     header.className = "header";
 
@@ -11,13 +14,13 @@ export function headerModulo(logo, nombreUsuario) {
     header.appendChild(userContainer);
 
     let imgLogo = document.createElement('img');
-    imgLogo.src = logo;
+    imgLogo.src = usuario.user.link_img;
     imgLogo.alt = "Logo usuario";
     imgLogo.className = "user-logo";
     userContainer.appendChild(imgLogo);
 
     let spanNombre = document.createElement('span');
-    spanNombre.textContent = nombreUsuario;
+    spanNombre.textContent = usuario.user.nombre;
     spanNombre.className = "user-name";
     userContainer.appendChild(spanNombre);
 

@@ -7,10 +7,9 @@ export function moduloGrado(gradoId,nombreGrado,estado){
     let blque1 = document.createElement('div');
     blque1.className = `div-grado ${estado}`;
 
-
     //texto del bloque grado 
     let texto1 = document.createElement('p');
-    texto1.className = "texto-inicio";
+    texto1.className = "texto-inicio"
     texto1.innerText = nombreGrado;
     blque1.appendChild(texto1);
 
