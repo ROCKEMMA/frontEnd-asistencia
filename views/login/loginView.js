@@ -11,14 +11,21 @@ export function loginView() {
     titulo.className = "login-title";
     div.appendChild(titulo);
 
-    // Contenedor para email
+    // Campo de Email
     let divEmail = document.createElement('div');
     divEmail.className = "input-group";
     
     let labelEmail = document.createElement('label');
-    labelEmail.innerText = "Correo electrónico:";
     labelEmail.htmlFor = "emailInput";
     labelEmail.className = "input-label";
+    
+    // Icono Email + Texto
+    let iconEmail = document.createElement('img');
+    iconEmail.src = "../../assets/icos/persona.svg";
+    iconEmail.alt = "Icono email";
+    iconEmail.className = "iconos";
+    labelEmail.appendChild(iconEmail);
+    labelEmail.appendChild(document.createTextNode("Correo o Usuario"));
     
     let entradaCorreo = document.createElement('input');
     entradaCorreo.type = "text";
@@ -30,14 +37,21 @@ export function loginView() {
     divEmail.appendChild(entradaCorreo);
     div.appendChild(divEmail);
 
-    // Contenedor para contraseña
+    // Campo de Contraseña
     let divContrasenna = document.createElement('div');
     divContrasenna.className = "input-group";
     
     let labelPass = document.createElement('label');
-    labelPass.innerText = "Contraseña:";
     labelPass.htmlFor = "passInput";
     labelPass.className = "input-label";
+    
+    // Icono Contraseña + Texto
+    let iconPass = document.createElement('img');
+    iconPass.src = "../../assets/icos/candado.svg";
+    iconPass.alt = "Icono contraseña";
+    iconPass.className = "iconos";
+    labelPass.appendChild(iconPass);
+    labelPass.appendChild(document.createTextNode("Contraseña"));
     
     let entradaContrasenna = document.createElement('input');
     entradaContrasenna.type = "password";
@@ -49,21 +63,20 @@ export function loginView() {
     divContrasenna.appendChild(entradaContrasenna);
     div.appendChild(divContrasenna);
 
-    // Enlace de recuperación de contraseña
+    // Enlace y Botón (sin cambios)
     let recuperacion = document.createElement('a');
     recuperacion.href = "#";
-    recuperacion.innerText = "Recuperación de contraseña";
+    recuperacion.innerText = "Recuperar contraseña";
     recuperacion.className = "recovery-link";
     div.appendChild(recuperacion);
 
-    // Botón de enviar
     let boton = document.createElement('button');
-    boton.innerText = "Ingresar";
+    boton.innerText = "Iniciar";
     boton.type = "button";
     boton.className = "login-button";
     div.appendChild(boton);
 
-    // Manejador de evento básico
+    // Manejador de evento (sin cambios)
     boton.addEventListener("click", async () => {
         const email = entradaCorreo.value;
         const password = entradaContrasenna.value;        
@@ -75,15 +88,10 @@ export function loginView() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ email, password })
-                
             });
 
             const data = await response.json();
-            console.log(data);
-            
-
             if (data.success) {
-                // Redirección básica (sin manejo de roles aún)
                 window.location.href = "dasboar.html";
             } else {
                 alert(data.error || "Error al iniciar sesión");
