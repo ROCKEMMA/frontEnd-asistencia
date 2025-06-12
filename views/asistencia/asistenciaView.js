@@ -18,45 +18,38 @@ function asistenciaView(estadoAsistencia){
     divMarcarTodo.className = "div-marcar-todo";
     sectionAsistencia.appendChild(divMarcarTodo);
 
-    const listaAlumnos = [
-        {
-            nombre: "Juan Carlos Pérez López",
-            estado: true
-        },
-        {
-            nombre: "María Fernanda García Ruiz",
-            estado: false
-        },
-        {
-            nombre: "José Antonio Martínez",
-            estado: true
-        },
-        {
-            nombre: "Ana Patricia Rodríguez Díaz",
-            estado: false
-        },
-        {
-            nombre: "Luis Alberto González",
-            estado: true
+    async function obtenerAlumnos (){
+        try {
+            const grado = JSON.parse(localStorage.getItem("gradoActivo"));
+    
+            const response = await fetch(`http://localhost:3000/alumnos?grado_id=${grado.gradoId}`);
+            const data = await response.json();
+            
+            let divAlumnos = document.createElement('div');
+            divAlumnos.className = "div-alumnos";
+            data.forEach(element => {
+                divAlumnos.appendChild(moduloAsistencia(element.nombres,element.estado));
+                console.log(element.nombres);
+            });
+            sectionAsistencia.appendChild(divAlumnos);
+            
+            // BOTÓN ACTUALIZAR O MARCAR ASISTENCIA
+            // Evaluar si se toma la asistencia por primera vez o actualización
+            let textoBoton = estadoAsistencia ? "Actualizar" :"Tomar Asistencia";
+            let clasebtn = estadoAsistencia ?  "btn-tomar-asistencia-true":"btn-tomar-asistencia";
+
+            let btnTomarAsistencia = document.createElement('div');
+            btnTomarAsistencia.className = `btn-tomar-asistencia ${clasebtn}`;
+            btnTomarAsistencia.innerText = textoBoton;
+            sectionAsistencia.appendChild(btnTomarAsistencia);
+
+        
+        } catch (error) { 
+            console.error("Error:", error);
         }
-    ];
-
-    // Caja que contiene a todos los alumos de la base de datos
-    let divAlumnos = document.createElement('div');
-    divAlumnos.className = "div-alumnos";
-    listaAlumnos.forEach(element => {
-        divAlumnos.appendChild(moduloAsistencia(element.nombre,element.estado));
-    });
-    sectionAsistencia.appendChild(divAlumnos);
-
-    // Evaluar si se toma la asistencia por primera vez o actualización
-    let textoBoton = estadoAsistencia ? "Actualizar" :"Tomar Asistencia";
-    let clasebtn = estadoAsistencia ?  "btn-tomar-asistencia-true":"btn-tomar-asistencia";
-
-    let btnTomarAsistencia = document.createElement('div');
-    btnTomarAsistencia.className = `btn-tomar-asistencia ${clasebtn}`;
-    btnTomarAsistencia.innerText = textoBoton;
-    sectionAsistencia.appendChild(btnTomarAsistencia);
+    }
+    
+    obtenerAlumnos();
 
     return sectionAsistencia;
 }

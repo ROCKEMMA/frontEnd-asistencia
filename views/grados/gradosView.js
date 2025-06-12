@@ -25,17 +25,12 @@ async function cargarGradosView(nivel) {
         if (!response.ok) throw new Error(data.message || "Error al cargar grados");
 
         data.forEach(element => {
-/*             let estado = element.estado === true ? "completado" : 
-                 element.estado === false ? "no-completado" : 
-                 "en-espera"; */
             let estado = null;
-
-            sectionGrados.appendChild(moduloGrado(element.nombre, estado));
+            sectionGrados.appendChild(moduloGrado(2,element.nombre, estado));
         });
 
     } catch (error) { 
         console.error("Error:", error);
-        // Mostrar mensaje de error en la UI
         const errorElement = document.createElement('p');
         errorElement.className = "error";
         errorElement.textContent = "No se pudieron cargar los grados. Intenta más tarde.";
