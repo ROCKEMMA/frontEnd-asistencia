@@ -18,15 +18,16 @@ async function cargarGradosView(nivel) {
         const usuario = JSON.parse(localStorage.getItem("usuario"));
         let tipo_usuario = usuario.user.tipo_usuario_id;
         let grado = usuario.user.grado_id;
-        
-        const response = await fetch(`https://asistencia.jossuefuentes.space/grados?tipo_usuario_id=${tipo_usuario}&nivel_id=${grado}`);
+        let nivel = usuario.user.nivel_id;
+
+        const response = await fetch(`https://asistencia.jossuefuentes.space/grados?tipo_usuario_id=${tipo_usuario}&nivel_id=${nivel}`);
         const data = await response.json();
         
         if (!response.ok) throw new Error(data.message || "Error al cargar grados");
 
         data.forEach(element => {
             let estado = null;
-            sectionGrados.appendChild(moduloGrado(2,element.nombre, estado));
+            sectionGrados.appendChild(moduloGrado(element.id,element.nombre, estado));
         });
 
     } catch (error) { 
