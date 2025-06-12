@@ -19,7 +19,7 @@ async function cargarGradosView(nivel) {
         let tipo_usuario = usuario.user.tipo_usuario_id;
         let grado = usuario.user.grado_id;
         
-        const response = await fetch(`http://localhost:3000/grados?tipo_usuario_id=${tipo_usuario}&nivel_id=${grado}`);
+        const response = await fetch(`https://asistencia.jossuefuentes.space/grados?tipo_usuario_id=${tipo_usuario}&nivel_id=${grado}`);
         const data = await response.json();
         
         if (!response.ok) throw new Error(data.message || "Error al cargar grados");

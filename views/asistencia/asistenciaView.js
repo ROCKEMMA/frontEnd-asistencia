@@ -22,7 +22,7 @@ function asistenciaView(estadoAsistencia){
         try {
             const grado = JSON.parse(localStorage.getItem("gradoActivo"));
     
-            const response = await fetch(`http://localhost:3000/alumnos?grado_id=${grado.gradoId}`);
+            const response = await fetch(`https://asistencia.jossuefuentes.space/alumnos?grado_id=${grado.gradoId}`);
             const data = await response.json();
             
             let divAlumnos = document.createElement('div');
