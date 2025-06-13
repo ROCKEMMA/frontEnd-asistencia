@@ -3,25 +3,26 @@ import { cargarCSS } from "../../controles/controlCSS.js";
 export function moduloAsistencia(nombreDeAsistencia, estado) {
     cargarCSS('../modules/asistencia/asistenciaModulo.css');
 
-    // DIV DEL BLOQUE DE ASISTENCIA 
     let bloque2 = document.createElement('div');
     bloque2.className = `div-asistencia ${estado}`;
 
-    // Texto del bloque de asistencia
     let texto_asistencia = document.createElement('p');
     texto_asistencia.className = "texto-asisten";
     texto_asistencia.innerText = nombreDeAsistencia;
     bloque2.appendChild(texto_asistencia);
 
-    // ESTE SUB DIV ES PARA CREAAR LO QUE SON LOS CUADIRTROS 
     let divAsistencia = document.createElement('div');
     divAsistencia.className = "div-cuadritos";
-    //console.log(estado)
-    if(estado){
-        divAsistencia.classList.add("AAA");
-    }else {
-        divAsistencia.classList.add("BBB");
-    }
+
+    // Estado inicial
+    divAsistencia.classList.add(estado ? "AAA" : "BBB");
+
+    // 🟢 Evento para marcar/desmarcar individualmente
+    divAsistencia.addEventListener("click", () => {
+        divAsistencia.classList.toggle("presente");
+        divAsistencia.classList.toggle("ausente");
+    });
+
     bloque2.appendChild(divAsistencia);
 
     let divUniforme = document.createElement('div');
@@ -35,5 +36,3 @@ export function moduloAsistencia(nombreDeAsistencia, estado) {
 
     return bloque2;
 }
-
-
