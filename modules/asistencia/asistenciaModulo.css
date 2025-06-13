@@ -39,3 +39,9 @@
     border: 1px solid #f08c00 ;
 }
 
+.presente {
+    background-color: #b2f2bb;
+}
+.ausente {
+    background-color: #e74c3c;
+}
