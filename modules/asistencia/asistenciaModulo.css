@@ -1,9 +1,9 @@
-.div-asistencia {
+.div-contenedor {
     width: 100%;
     padding: 0 0.5rem;
-
     color: rgb(0, 0, 0);
     border: 1px solid #11100f;
+    border-radius: 4px;
 
     display: grid;
     grid-template-columns: 1fr repeat(3,auto);
@@ -14,12 +14,12 @@
 .texto-asisten {
     font-size: 1.2rem;
 }
-.div-cuadritos{
+.div-asistencia{
     width: 20px;
     height: 20px;
     margin: 5px;
     background-color: #b2f2bb;
-    border: 1px solid #2f9e44;
+    border: 1px solid gray;
     display: flex;
     margin-left: 50px;
 }
@@ -43,5 +43,5 @@
     background-color: #b2f2bb;
 }
 .ausente {
-    background-color: #e74c3c;
+    background-color: #dd7064;
 }

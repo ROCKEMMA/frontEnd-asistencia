@@ -9,20 +9,22 @@ function asistenciaView(estadoAsistencia){
     sectionAsistencia.className = "section-asistencia";
 
     document.body.appendChild(headerModulo("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.TCcYPZkra7mTMPCWre3uagAAAA%26pid%3DApi&f=1&ipt=8f255ef1389d07972910aa50f4f5e2fa0a9cb54dbb3a090d9aa506d50a588d0f","Jossue Fuentes"));
-
+    
+    const grado = JSON.parse(localStorage.getItem("gradoActivo"));
     let h2 = document.createElement('h2');
-    h2.innerText = "Nombre del grado";
+    h2.innerText = grado.nombreGrado;
     sectionAsistencia.appendChild(h2);
+     
 
     let divMarcarTodo = document.createElement('div');
     divMarcarTodo.className = "div-marcar-todo";
+    divMarcarTodo.innerText = "Todos presentes"
     sectionAsistencia.appendChild(divMarcarTodo);
 
     let marcado = false;
-
     divMarcarTodo.addEventListener("click", () => {
         marcado = !marcado;
-        const cuadros = document.querySelectorAll(".div-asistencia .div-cuadritos");
+        const cuadros = document.querySelectorAll(".div-contenedor .div-asistencia");
 
         cuadros.forEach(cuadro => {
             cuadro.classList.remove("presente", "ausente");
@@ -33,8 +35,6 @@ function asistenciaView(estadoAsistencia){
 
     async function obtenerAlumnos (){
         try {
-            const grado = JSON.parse(localStorage.getItem("gradoActivo"));
-    
             const response = await fetch(`https://asistencia.jossuefuentes.space/alumnos?grado_id=${grado.gradoId}`);
             const data = await response.json();
             console.log(data);
@@ -57,6 +57,11 @@ function asistenciaView(estadoAsistencia){
             btnTomarAsistencia.innerText = textoBoton;
             sectionAsistencia.appendChild(btnTomarAsistencia);
 
+            btnTomarAsistencia.addEventListener("click",()=>{
+                let alumnos = data;
+                
+            });
+
         
         } catch (error) { 
             console.error("Error:", error);
@@ -68,6 +73,6 @@ function asistenciaView(estadoAsistencia){
     return sectionAsistencia;
 }
 
-let baseDeDatos = true;
+let baseDeDatos = false;
 
 document.body.appendChild(asistenciaView(baseDeDatos));
