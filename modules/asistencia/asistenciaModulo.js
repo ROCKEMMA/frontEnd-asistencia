@@ -1,38 +1,46 @@
 import { cargarCSS } from "../../controles/controlCSS.js";
 
-export function moduloAsistencia(nombreDeAsistencia, estado) {
+export function moduloAsistencia(nombreAlumno, estado) {
     cargarCSS('../modules/asistencia/asistenciaModulo.css');
 
-    let bloque2 = document.createElement('div');
-    bloque2.className = `div-asistencia ${estado}`;
+    let div = document.createElement('div');
+    div.className = `div-contenedor ${estado}`;
 
-    let texto_asistencia = document.createElement('p');
-    texto_asistencia.className = "texto-asisten";
-    texto_asistencia.innerText = nombreDeAsistencia;
-    bloque2.appendChild(texto_asistencia);
+    let p = document.createElement('p');
+    p.className = "texto-asisten";
+    p.innerText = nombreAlumno;
+    div.appendChild(p);
 
     let divAsistencia = document.createElement('div');
-    divAsistencia.className = "div-cuadritos";
+    divAsistencia.className = "div-asistencia";
+    divAsistencia.classList.add(estado ? "presente" : "ausente");
 
-    // Estado inicial
-    divAsistencia.classList.add(estado ? "AAA" : "BBB");
-
-    // 🟢 Evento para marcar/desmarcar individualmente
     divAsistencia.addEventListener("click", () => {
         divAsistencia.classList.toggle("presente");
         divAsistencia.classList.toggle("ausente");
+
+        // código para verificar los datos de asistencia
+        console.clear();
+        let estadoAsistencia = [];
+        const divs = document.querySelectorAll(".div-asistencia");
+        divs.forEach(div => {
+            estadoAsistencia.push(div.classList[1]);
+        });
+        console.log(estadoAsistencia);
+        // -------------------------------------------
+
     });
 
-    bloque2.appendChild(divAsistencia);
+    div.appendChild(divAsistencia);
 
     let divUniforme = document.createElement('div');
     divUniforme.className = "div-cuadrito2";
-    bloque2.appendChild(divUniforme);
+    div.appendChild(divUniforme);
 
     let imgCorreo = document.createElement('img');
     imgCorreo.src = "../assets/icos/email_ico.svg";
     imgCorreo.className = "img-correo";
-    bloque2.appendChild(imgCorreo);
+    div.appendChild(imgCorreo);
 
-    return bloque2;
+    return div;
 }
