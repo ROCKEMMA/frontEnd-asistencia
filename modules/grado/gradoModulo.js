@@ -14,7 +14,7 @@ export function moduloGrado(gradoId,nombreGrado,estado){
     blque1.appendChild(texto1);
 
     blque1.addEventListener("click",()=>{
-        localStorage.setItem("gradoActivo",JSON.stringify({gradoId: gradoId}))       
+        localStorage.setItem("gradoActivo",JSON.stringify({gradoId: gradoId, nombreGrado: nombreGrado}))       
         const usuario = JSON.parse(localStorage.getItem("gradoActivo"));
         console.log(usuario);
         setTimeout(() => {
