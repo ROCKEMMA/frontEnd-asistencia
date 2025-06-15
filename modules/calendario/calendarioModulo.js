@@ -1,8 +1,7 @@
 import { cargarCSS } from "../../controles/controlCSS.js";
 
-export function calendarioModulo (mesIndex = new Date().getMonth()) {
-
-    cargarCSS('../modules/calendario/calendarioModulo.css');
+export function calendarioModulo(mesIndex = new Date().getMonth(), asistencia = {}) {
+  cargarCSS('../modules/calendario/calendarioModulo.css');
 
   let calendario = document.createElement("div");
   calendario.classList.add("calendario");
@@ -12,9 +11,6 @@ export function calendarioModulo (mesIndex = new Date().getMonth()) {
     "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
   ];
 
-  let estados = ["ninguno", "presente", "tarde", "ausente"];
-
-  // Encabezado con botones y título del mes
   let encabezado = document.createElement("div");
   encabezado.classList.add("encabezado");
 
@@ -32,7 +28,6 @@ export function calendarioModulo (mesIndex = new Date().getMonth()) {
   encabezado.appendChild(btnSiguiente);
   calendario.appendChild(encabezado);
 
-  // Tabla de calendario
   let tabla = document.createElement("div");
   tabla.classList.add("tabla");
 
@@ -45,18 +40,14 @@ export function calendarioModulo (mesIndex = new Date().getMonth()) {
     etiqueta.textContent = seccion;
     tabla.appendChild(etiqueta);
 
-    for (let dia = 1; dia <= diasPorSemana; dia++) {
+    for (let dia = 0; dia < diasPorSemana; dia++) {
       let celda = document.createElement("div");
       celda.classList.add("celda");
-      celda.dataset.estado = "ninguno";
-      celda.textContent = dia;
+      celda.textContent = dia + 1;
 
-      celda.addEventListener("click", () => {
-        let actual = celda.dataset.estado;
-        let siguiente = estados[(estados.indexOf(actual) + 1) % estados.length];
-        celda.dataset.estado = siguiente;
-        actualizarColor(celda, siguiente);
-      });
+      let estado = asistencia[seccion]?.[dia] || "ninguno";
+      celda.dataset.estado = estado;
+      actualizarColor(celda, estado);
 
       tabla.appendChild(celda);
     }
@@ -64,16 +55,15 @@ export function calendarioModulo (mesIndex = new Date().getMonth()) {
 
   calendario.appendChild(tabla);
 
-  // Eventos para cambiar de mes
   btnAnterior.addEventListener("click", () => {
     let nuevoMes = (mesIndex - 1 + 12) % 12;
-    let nuevoCalendario = generarCalendario(nuevoMes);
+    let nuevoCalendario = calendarioModulo(nuevoMes, asistencia);
     calendario.replaceWith(nuevoCalendario);
   });
 
   btnSiguiente.addEventListener("click", () => {
     let nuevoMes = (mesIndex + 1) % 12;
-    let nuevoCalendario = generarCalendario(nuevoMes);
+    let nuevoCalendario = calendarioModulo(nuevoMes, asistencia);
     calendario.replaceWith(nuevoCalendario);
   });
 
