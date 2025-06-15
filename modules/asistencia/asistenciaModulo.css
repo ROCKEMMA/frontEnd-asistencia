@@ -45,3 +45,11 @@
 .ausente {
     background-color: #dd7064;
 }
+
+.sinObservacion {
+    background-color: #8fb3b6;
+}
+
+.conObservacion {
+    background-color: gold;
+}
