@@ -18,17 +18,6 @@ export function moduloAsistencia(nombreAlumno, estado) {
     divAsistencia.addEventListener("click", () => {
         divAsistencia.classList.toggle("presente");
         divAsistencia.classList.toggle("ausente");
-
-        // código para verificar los datos de asistencia
-        console.clear();
-        let estadoAsistencia = [];
-        const divs = document.querySelectorAll(".div-asistencia");
-        divs.forEach(div => {
-            estadoAsistencia.push(div.classList[1]);
-        });
-        console.log(estadoAsistencia);
-        // -------------------------------------------
-
     });
 
     div.appendChild(divAsistencia);

@@ -1,6 +1,7 @@
 import { cargarCSS } from "../../controles/controlCSS.js";
 import { headerModulo } from "../../modules/header/headerModulo.js";
 import { moduloAsistencia } from "../../modules/asistencia/asistenciaModulo.js";
+import { prepararDatosAsistencia } from "../../controles/empaquetarAsistencia.js";
 
 function asistenciaView(estadoAsistencia){
     cargarCSS("../views/asistencia/asistenciaView.css");
@@ -37,7 +38,6 @@ function asistenciaView(estadoAsistencia){
         try {
             const response = await fetch(`https://asistencia.jossuefuentes.space/alumnos?grado_id=${grado.gradoId}`);
             const data = await response.json();
-            console.log(data);
             
             let divAlumnos = document.createElement('div');
             divAlumnos.className = "div-alumnos";
@@ -57,9 +57,23 @@ function asistenciaView(estadoAsistencia){
             btnTomarAsistencia.innerText = textoBoton;
             sectionAsistencia.appendChild(btnTomarAsistencia);
 
-            btnTomarAsistencia.addEventListener("click",()=>{
-                let alumnos = data;
+            btnTomarAsistencia.addEventListener("click",async ()=>{
                 
+                try {
+                    let enviarDatos = await fetch('https://asistencia.jossuefuentes.space/reg-asistencia', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(prepararDatosAsistencia(data))
+                    })
+                    
+                    let response = await enviarDatos.json();
+                    console.log(response);
+                    
+                } catch (error) {
+                    console.error('Error en la petición:', error)
+                }
             });
 
         
