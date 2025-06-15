@@ -1,9 +1,11 @@
 import { cargarCSS } from "../../controles/controlCSS.js";
 import { headerModulo } from "../../modules/header/headerModulo.js";
 import { moduloAsistencia } from "../../modules/asistencia/asistenciaModulo.js";
+import { registrarAsistencia } from "../../controles/enviarAsistencia.js";
 import { prepararDatosAsistencia } from "../../controles/empaquetarAsistencia.js";
+import { verificarAsistencia } from "../../controles/verificarAsistencia.js";
 
-function asistenciaView(estadoAsistencia){
+function asistenciaView(){
     cargarCSS("../views/asistencia/asistenciaView.css");
 
     let sectionAsistencia = document.createElement('section');
@@ -38,6 +40,7 @@ function asistenciaView(estadoAsistencia){
         try {
             const response = await fetch(`https://asistencia.jossuefuentes.space/alumnos?grado_id=${grado.gradoId}`);
             const data = await response.json();
+            console.log(data);
             
             let divAlumnos = document.createElement('div');
             divAlumnos.className = "div-alumnos";
@@ -47,10 +50,12 @@ function asistenciaView(estadoAsistencia){
             });
             sectionAsistencia.appendChild(divAlumnos);
             
-            // BOTÓN ACTUALIZAR O MARCAR ASISTENCIA
-            // Evaluar si se toma la asistencia por primera vez o actualización
-            let textoBoton = estadoAsistencia ? "Actualizar" :"Tomar Asistencia";
-            let clasebtn = estadoAsistencia ?  "btn-tomar-asistencia-true":"btn-tomar-asistencia";
+            // -----------------------------------------------------------------------
+            let consultaEstadoAsistencia = await verificarAsistencia(grado.gradoId);
+            let estadoAsistencia = consultaEstadoAsistencia.estado_asistencia != 'completado';
+            console.log(estadoAsistencia)
+            let textoBoton = estadoAsistencia ? "Tomar Asistencia": "Actualizar";
+            let clasebtn = estadoAsistencia ?  "btn-tomar-asistencia": "btn-tomar-asistencia-true";
 
             let btnTomarAsistencia = document.createElement('div');
             btnTomarAsistencia.className = `btn-tomar-asistencia ${clasebtn}`;
@@ -58,35 +63,21 @@ function asistenciaView(estadoAsistencia){
             sectionAsistencia.appendChild(btnTomarAsistencia);
 
             btnTomarAsistencia.addEventListener("click",async ()=>{
-                
-                try {
-                    let enviarDatos = await fetch('https://asistencia.jossuefuentes.space/reg-asistencia', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(prepararDatosAsistencia(data))
-                    })
-                    
-                    let response = await enviarDatos.json();
-                    console.log(response);
-                    
-                } catch (error) {
-                    console.error('Error en la petición:', error)
+                if(estadoAsistencia){
+                    registrarAsistencia(data);
+                }else{
+                    console.log("Asistencia ya pasada");
                 }
+                location.reload();
             });
-
-        
+    
         } catch (error) { 
             console.error("Error:", error);
         }
     }
-    
     obtenerAlumnos();
 
     return sectionAsistencia;
 }
 
-let baseDeDatos = false;
-
-document.body.appendChild(asistenciaView(baseDeDatos));
+document.body.appendChild(asistenciaView());

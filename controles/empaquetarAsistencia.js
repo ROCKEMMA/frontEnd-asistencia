@@ -1,7 +1,8 @@
 export function prepararDatosAsistencia(data) {
     console.clear();
     let usuario = JSON.parse(localStorage.getItem("usuario")).user.id;
-
+    let grado = JSON.parse(localStorage.getItem("gradoActivo")).gradoId;
+    
     let alumnosId = [];
     data.forEach(alumno => {
         alumnosId.push(alumno.id);
@@ -23,6 +24,7 @@ export function prepararDatosAsistencia(data) {
 
     let paqueteDeDatos = {
         profesor_id: usuario,
+        grado_id: grado,
         asistencias: asistencias
     };
 
