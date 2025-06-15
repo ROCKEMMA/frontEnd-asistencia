@@ -1,0 +1,47 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.imagen-icono {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.grafica {
+  display: flex;
+  gap: 2px;
+}
+
+.barra {
+  width: 10px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.verde {
+  background-color: #4caf50;
+}
+
+.naranja {
+  background-color: #ffa500;
+}
+
+.rojo {
+  background-color: #f44336;
+}
+
+.gris {
+  background-color: #eee;
+}
+
+.porcentaje {
+  font-weight: bold;
+  min-width: 40px;
+  text-align: right;
+}
