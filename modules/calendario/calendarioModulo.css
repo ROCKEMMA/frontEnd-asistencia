@@ -1,0 +1,86 @@
+/* Contenedor principal del calendario */
+.calendario {
+  display: inline-block;
+  text-align: center;
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Encabezado con botones y nombre del mes */
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.encabezado button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+.encabezado button:hover {
+  color: #000;
+}
+
+/* Estructura tipo tabla con celdas */
+.tabla {
+  display: grid;
+  grid-template-columns: repeat(6, 40px); /* 1 columna para S1-S4 + 5 días */
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Etiqueta de fila como "S1", "S2"... */
+.etiqueta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  font-weight: bold;
+  border-radius: 6px;
+  height: 40px;
+}
+
+/* Celdas de los días */
+.celda {
+  width: 40px;
+  height: 40px;
+  border: 2px solid black;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+/* Colores de estado */
+.presente {
+  background-color: #4caf50; /* verde */
+  color: white;
+}
+
+.ausente {
+  background-color: #f44336; /* rojo */
+  color: white;
+}
+
+.tarde {
+  background-color: #ffa500; /* naranja */
+  color: white;
+}
+
+.ninguno {
+  background-color: white;
+  color: black;
+}
+
