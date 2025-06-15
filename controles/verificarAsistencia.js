@@ -1,6 +1,6 @@
 export async function verificarAsistencia(gradoId) {
   try {
-    const res = await fetch(`http://localhost:3000/estado-asistencia?grado_id=${gradoId}`);
+    const res = await fetch(`https://asistencia.jossuefuentes.space/estado-asistencia?grado_id=${gradoId}`);
 
     const estado = await res.json();
     return estado;
