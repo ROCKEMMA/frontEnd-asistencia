@@ -1,11 +1,10 @@
 import { cargarCSS } from "../../controles/controlCSS.js";
 
-export function GraficaAlumno (porcentaje) {
+export function GraficaAlumno(porcentaje, id = "") {
+  cargarCSS("../modules/graficoAlumno/alumnoGraficoModulo.css");
 
-    cargarCSS("../modules/graficoAlumno/alumnoGraficoModulo.css");
-
-  let totalBarras = 20;
-  let cantidadActiva = Math.round((porcentaje / 100) * totalBarras);
+  const totalBarras = 20;
+  const cantidadActiva = Math.round((porcentaje / 100) * totalBarras);
 
   let claseColor = "rojo";
   if (porcentaje > 80) {
@@ -14,21 +13,32 @@ export function GraficaAlumno (porcentaje) {
     claseColor = "naranja";
   }
 
-  let item = document.createElement("div");
+  const item = document.createElement("div");
   item.classList.add("item");
 
+  // Contenedor de icono + ID
+  const infoAlumno = document.createElement("div");
+  infoAlumno.classList.add("info-alumno");
 
-  let img = document.createElement("img")
-  img.src = "../assets/icos/personaIcoNegro.svg"; 
+  const img = document.createElement("img");
+  img.src = "../assets/icos/personaIcoNegro.svg";
   img.classList.add("imagen-icono");
-  item.appendChild(img);
 
+  const spanId = document.createElement("span");
+  spanId.classList.add("alumno-id");
+  spanId.textContent = id;
 
-  let grafica = document.createElement("div");
+  infoAlumno.appendChild(img);
+  infoAlumno.appendChild(spanId);
+
+  item.appendChild(infoAlumno);
+
+  // Gráfica de barras
+  const grafica = document.createElement("div");
   grafica.classList.add("grafica");
 
   for (let i = 0; i < totalBarras; i++) {
-    let div = document.createElement("div");
+    const div = document.createElement("div");
     div.classList.add("barra");
 
     if (i < cantidadActiva) {
@@ -42,9 +52,11 @@ export function GraficaAlumno (porcentaje) {
 
   item.appendChild(grafica);
 
-  let texto = document.createElement("span");
+  // Texto con el porcentaje
+  const texto = document.createElement("span");
   texto.classList.add("porcentaje");
   texto.textContent = `${porcentaje}%`;
+
   item.appendChild(texto);
 
   return item;
