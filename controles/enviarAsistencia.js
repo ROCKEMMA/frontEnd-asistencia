@@ -1,7 +1,7 @@
 import { prepararDatosAsistencia } from "../../controles/empaquetarAsistencia.js";
 export async function registrarAsistencia(data) {
   try {
-    let enviarDatos = await fetch("http://localhost:3000/reg-asistencia", {
+    let enviarDatos = await fetch("https://asistencia.jossuefuentes.space/reg-asistencia", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
