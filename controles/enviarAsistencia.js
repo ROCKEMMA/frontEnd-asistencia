@@ -1,4 +1,4 @@
-import { prepararDatosAsistencia } from "../../controles/empaquetarAsistencia.js";
+import { prepararDatosAsistencia } from "./empaquetarAsistencia.js";
 export async function registrarAsistencia(data) {
   try {
     let enviarDatos = await fetch("https://asistencia.jossuefuentes.space/reg-asistencia", {
