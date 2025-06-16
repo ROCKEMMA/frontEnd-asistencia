@@ -8,6 +8,48 @@ export function headerModulo(logo, nombreUsuario) {
     let header = document.createElement('header');
     header.className = "header";
 
+    // Botón de menú
+    let menuBtn = document.createElement('button');
+    menuBtn.innerHTML = "☰";
+    menuBtn.className = "menu-btn";
+    header.appendChild(menuBtn);
+
+    // Menú desplegable lateral
+    let sidebar = document.createElement('div');
+    sidebar.className = "sidebar";
+    sidebar.innerHTML = `
+        <ul class="sidebar-menu">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Perfil</a></li>
+            <li><a href="#">Configuración</a></li>
+        </ul>
+        <button class="logout-btn logout-sidebar-btn">Salir</button>
+    `;
+    document.body.appendChild(sidebar);
+
+    // Evento para cerrar sesión desde botón dentro del menú
+    sidebar.querySelector('.logout-sidebar-btn').addEventListener("click", () => {
+        localStorage.removeItem("usuario");
+        window.location.href = "../index.html";
+    });
+
+    // Mostrar/Ocultar menú
+    menuBtn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        sidebar.classList.toggle("open");
+    });
+
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener("click", (event) => {
+        const esClickDentroDelSidebar = sidebar.contains(event.target);
+        const esClickEnMenuBtn = menuBtn.contains(event.target);
+
+        if (!esClickDentroDelSidebar && !esClickEnMenuBtn) {
+            sidebar.classList.remove("open");
+        }
+    });
+
+    // Contenedor usuario
     let userContainer = document.createElement('div');
     userContainer.className = "user-container";
     header.appendChild(userContainer);
@@ -22,15 +64,6 @@ export function headerModulo(logo, nombreUsuario) {
     spanNombre.textContent = usuario.user.nombre;
     spanNombre.className = "user-name";
     userContainer.appendChild(spanNombre);
-
-    let logoutBtn = document.createElement('button');
-    logoutBtn.textContent = "Salir";
-    logoutBtn.className = "logout-btn";
-    logoutBtn.addEventListener("click", () => {
-        localStorage.removeItem("usuario");
-        window.location.href = "../index.html";
-    });
-    header.appendChild(logoutBtn);
 
     return header;
 }
