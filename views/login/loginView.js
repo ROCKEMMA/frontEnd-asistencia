@@ -21,7 +21,7 @@ export function loginView() {
     
     // Icono Email + Texto
     let iconEmail = document.createElement('img');
-    iconEmail.src = "../../assets/icos/persona.svg";
+    iconEmail.src = "../assets/icos/persona.svg";
     iconEmail.alt = "Icono email";
     iconEmail.className = "iconos";
     labelEmail.appendChild(iconEmail);
@@ -47,7 +47,7 @@ export function loginView() {
     
     // Icono Contraseña + Texto
     let iconPass = document.createElement('img');
-    iconPass.src = "../../assets/icos/candado.svg";
+    iconPass.src = "../assets/icos/candado.svg";
     iconPass.alt = "Icono contraseña";
     iconPass.className = "iconos";
     labelPass.appendChild(iconPass);
