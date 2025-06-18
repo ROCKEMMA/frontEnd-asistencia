@@ -18,7 +18,7 @@ export function moduloGradoGrafica() {
 
    //ACA VA LO DE LA GRAFICA DE BARRA NEGRA PROFE
    //valores de forma de lista
-let valorGrafica = ["30%", "57%", "69%", "100%", "25%", "80%", "69%", "10%", "100%"];
+let valorGrafica = ["30%", "59%", "69%", "100%", "25%", "80%", "69%", "10%", "100%"];
 let gradosBarras = ['IV C', 'IV DG', 'IV BIO', 'IV PC', 'V DG', 'V BIO', 'V PC', 'VI C', 'VI Mag'];
 
 valorGrafica.forEach((cadaBarra, index) => {
