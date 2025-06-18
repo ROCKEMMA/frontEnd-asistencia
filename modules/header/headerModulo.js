@@ -1,10 +1,11 @@
 import { cargarCSS } from "../../controles/controlCSS.js";
+import { proyeccionView } from "../../views/proyección/proyecciónView.js";
 
 export function headerModulo(logo, nombreUsuario) {
     cargarCSS('../modules/header/headerModulo.css');
 
     const usuario = JSON.parse(localStorage.getItem("usuario"));
-
+    
     let header = document.createElement('header');
     header.className = "header";
 
@@ -22,6 +23,7 @@ export function headerModulo(logo, nombreUsuario) {
             <li><a href="#">Inicio</a></li>
             <li><a href="#">Perfil</a></li>
             <li><a href="#">Configuración</a></li>
+            <li><a href="proyecciones.html">Proyección</a></li>
         </ul>
         <button class="logout-btn logout-sidebar-btn">Salir</button>
     `;
