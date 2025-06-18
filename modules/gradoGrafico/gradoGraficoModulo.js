@@ -1,4 +1,5 @@
 import { cargarCSS } from "../../controles/controlCSS.js";
+import { itemGraficoModulo } from "../itemGraficos/itemGraficosModulo.js";
 
 export function moduloGradoGrafica() {
     cargarCSS("../modules/gradoGrafico/gradoGraficoModulo.css");
@@ -11,21 +12,41 @@ export function moduloGradoGrafica() {
     tituloModulo.innerText = "Proyección de asistencia general";
     bloqueGradoGraficas.appendChild(tituloModulo);
 
-   //ACA VA LO DE LA GRAFICA DE BARRA NEGRA PROFE 
-    let contenedorPrimero = document.createElement('div');
-    contenedorPrimero.className = 'contenedor-Img';
 
-    let grafica = document.createElement('img');
-    grafica.className = 'grafica-general';
-    grafica.src = '../assets/icos/graficaNormal.svg';
-    contenedorPrimero.appendChild(grafica);
+     let contenedorPrimero = document.createElement('div');
+    contenedorPrimero.className = 'contenedorGraficaGeneal';
+
+   //ACA VA LO DE LA GRAFICA DE BARRA NEGRA PROFE
+   //valores de forma de lista
+let valorGrafica = ["30%", "57%", "69%", "100%", "25%", "80%", "69%", "10%", "100%"];
+let gradosBarras = ['IV C', 'IV DG', 'IV BIO', 'IV PC', 'V DG', 'V BIO', 'V PC', 'VI C', 'VI Mag'];
+
+valorGrafica.forEach((cadaBarra, index) => {
+    const nombreGrado = gradosBarras[index];
+    const porcentaje = Number(cadaBarra.replace('%', ''));
+
+    // Lógica para asignar color sin modificar la función
+    let colorBarra = "";
+    if (porcentaje <= 59) {
+        colorBarra = "red";
+    } else if (porcentaje < 70) {
+        colorBarra = "orange";
+    } else {
+        colorBarra = "green";
+    }
+
+    contenedorPrimero.appendChild(itemGraficoModulo(cadaBarra, colorBarra, nombreGrado));
+});
+
+
+
     bloqueGradoGraficas.appendChild(contenedorPrimero);
 
 
     let subBloqueGrados = document.createElement('div');
     subBloqueGrados.className = 'div-imagenesGrados';
 
-    // Función reutilizable para crear un bloque grado + imagen
+    // Función reutilizable para crear un bloque grado  imagen
     function crearGrado(nombre) {
         let contenedorGrado = document.createElement('div');
         contenedorGrado.className = 'contenedor-grado';

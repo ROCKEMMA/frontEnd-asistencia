@@ -10,16 +10,33 @@
     font-size: 18px;
 }
 
-.contenedor-Img {
+.contenedorGraficaGeneal{
     display: flex;
+    height: 100px;
+    gap: 10px;
     justify-content: center;
+    align-items:end;
     margin-bottom: 20px;
 }
 
-.grafica-general {
-    height: 100px;
-    max-width: 100%;
+
+.cursorPorcentaje-barra {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 1px 4px;
+  border-radius: 3px;
+  opacity: 0;
+  pointer-events: none;
 }
+
+.contenedorGraficaGeneal >  div:hover .cursorPorcentaje-barra {
+  opacity: 1;
+}
+
 
 .div-imagenesGrados {
     display: grid;
