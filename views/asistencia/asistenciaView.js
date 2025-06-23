@@ -52,6 +52,7 @@ function asistenciaView(){
             
             // -----------------------------------------------------------------------
             let consultaEstadoAsistencia = await verificarAsistencia(grado.gradoId);
+            console.log("Mi resultado",consultaEstadoAsistencia);
             let estadoAsistencia = consultaEstadoAsistencia.estado_asistencia != 'completado';
             console.log(estadoAsistencia)
             let textoBoton = estadoAsistencia ? "Tomar Asistencia": "Actualizar";
@@ -62,14 +63,19 @@ function asistenciaView(){
             btnTomarAsistencia.innerText = textoBoton;
             sectionAsistencia.appendChild(btnTomarAsistencia);
 
-            btnTomarAsistencia.addEventListener("click",async ()=>{
-                if(estadoAsistencia){
-                    registrarAsistencia(data);
-                }else{
-                    console.log("Asistencia ya pasada");
+            btnTomarAsistencia.addEventListener("click", async () => {
+                try {
+                    if (estadoAsistencia) {
+                        await registrarAsistencia(data);
+                    }else {
+                        console.log("Asistencia ya pasada");
+                    }
+                    location.reload();
+                } catch (error) {
+                    console.error("Error al tomar asistencia:", error);
                 }
-                location.reload();
             });
+
     
         } catch (error) { 
             console.error("Error:", error);
