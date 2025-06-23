@@ -49,21 +49,17 @@ export function headerModulo(logo, nombreUsuario) {
         }
     });
 
-    // Contenedor usuario
-    let userContainer = document.createElement('div');
-    userContainer.className = "user-container";
-    header.appendChild(userContainer);
+    let spanNombre = document.createElement('span');
+    spanNombre.textContent = usuario.user.nombre;
+    spanNombre.className = "user-name";
+    header.appendChild(spanNombre);
 
     let imgLogo = document.createElement('img');
     imgLogo.src = usuario.user.link_img;
     imgLogo.alt = "Logo usuario";
     imgLogo.className = "user-logo";
-    userContainer.appendChild(imgLogo);
+    header.appendChild(imgLogo);
 
-    let spanNombre = document.createElement('span');
-    spanNombre.textContent = usuario.user.nombre;
-    spanNombre.className = "user-name";
-    userContainer.appendChild(spanNombre);
 
     return header;
 }
