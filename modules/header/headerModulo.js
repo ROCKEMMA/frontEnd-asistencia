@@ -1,5 +1,4 @@
 import { cargarCSS } from "../../controles/controlCSS.js";
-import { proyeccionView } from "../../views/proyección/proyecciónView.js";
 
 export function headerModulo(logo, nombreUsuario) {
     cargarCSS('../modules/header/headerModulo.css');
