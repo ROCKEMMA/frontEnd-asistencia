@@ -1,41 +1,53 @@
 .div-elimiAlumno {
   max-width: 250px;
+  width: 100%;
   padding: 16px;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: white;
   font-family: Arial, sans-serif;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 1rem auto;
+  box-sizing: border-box;
 }
 
+/* Título */
 .titulo {
   font-size: 16px;
   margin-bottom: 12px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
 }
 
+/* Contenedor del nombre */
 .div-nombre {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
+/* Texto del alumno */
 .texto-alumno-apellido {
   font-size: 14px;
   color: #333;
 }
 
+/* Mensaje de confirmación */
 .cuerpo-eliminar {
   border: 1px solid #ccc;
   padding: 8px;
   font-size: 13px;
   border-radius: 4px;
   height: 60px;
-  color: #d9534f; 
+  color: #d9534f;
   background-color: #fdfdfd;
+  overflow-y: auto;
 }
 
+/* Botón */
 .botondeEliminar {
-  align-self: flex-end; 
+  align-self: flex-end;
   margin-top: 10px;
   padding: 8px 14px;
   background-color: #f8bfbf;
@@ -43,4 +55,51 @@
   border-radius: 4px;
   cursor: pointer;
   display: inline-block;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.botondeEliminar:hover {
+  background-color: #f29e9e;
+}
+
+/* === RESPONSIVE DESIGN === */
+
+/* Celulares */
+@media (max-width: 480px) {
+  .div-elimiAlumno {
+    max-width: 90%;
+    padding: 12px;
+  }
+
+  .titulo {
+    font-size: 15px;
+  }
+
+  .texto-alumno-apellido {
+    font-size: 13px;
+  }
+
+  .cuerpo-eliminar {
+    font-size: 12px;
+    height: auto;
+    min-height: 50px;
+  }
+
+  .botondeEliminar {
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) and (min-width: 481px) {
+  .div-elimiAlumno {
+    max-width: 400px;
+  }
+
+  .cuerpo-eliminar {
+    height: auto;
+  }
 }
