@@ -3,6 +3,7 @@
   align-items: center;
   gap: 10px;
   margin: 10px 0;
+  flex-wrap: wrap; /* Permite que se acomode si el espacio es pequeño */
 }
 
 .imagen-icono {
@@ -15,6 +16,7 @@
 .grafica {
   display: flex;
   gap: 2px;
+  flex-wrap: wrap; /* Evita desbordes en pantallas pequeñas */
 }
 
 .barra {
@@ -44,4 +46,33 @@
   font-weight: bold;
   min-width: 40px;
   text-align: right;
+  flex-shrink: 0; /* Evita que se encoja cuando no cabe */
+}
+
+/* ============ RESPONSIVE DESIGN ============ */
+
+/* Celulares */
+@media (max-width: 480px) {
+  .item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .porcentaje {
+    text-align: left;
+    min-width: auto;
+    margin-top: 4px;
+  }
+}
+
+/* Tablets */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .item {
+    gap: 8px;
+  }
+
+  .barra {
+    width: 9px;
+    height: 18px;
+  }
 }
