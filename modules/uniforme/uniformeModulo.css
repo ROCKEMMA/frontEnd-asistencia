@@ -64,7 +64,7 @@
     float: right; 
 }
 
-/* 📱 Móvil: hasta 600px */
+/* Móvil: hasta 600px */
 @media (max-width: 600px) {
     .div-uniforme {
         width: 90%;
@@ -92,7 +92,7 @@
     }
 }
 
-/* 💻 Tablet: 601px a 1024px */
+/*  Tablet: 601px a 1024px */
 @media (min-width: 601px) and (max-width: 1024px) {
     .div-uniforme {
         width: 85%;
