@@ -1,0 +1,9 @@
+.grafico-general {
+    width: 95%;
+    height: 20rem;
+    margin: auto;
+    margin-top: 4rem;
+}
+.grafico-general h2 {
+    margin-bottom: 2rem;
+}
