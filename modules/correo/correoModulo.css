@@ -9,14 +9,18 @@
   max-width: 500px;
   margin: 1rem auto;
   font-family: Arial, sans-serif;
+  box-sizing: border-box;
 }
 
+/* Texto del encabezado */
 .texto-correo {
   font-size: 1.2rem;
   font-weight: bold;
   color: #333;
+  text-align: left;
 }
 
+/* Área de texto */
 .cuerpo-correo {
   height: 150px;
   resize: vertical;
@@ -35,6 +39,7 @@
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
 }
 
+/* Botón de enviar */
 .boton {
   align-self: flex-end;
   padding: 0.6rem 1.2rem;
@@ -49,4 +54,30 @@
 
 .boton:hover {
   background-color: #0056b3;
+}
+
+/* === RESPONSIVE DESIGN === */
+
+/* Para pantallas pequeñas (como celulares) */
+@media (max-width: 480px) {
+  .div-correo {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+
+  .texto-correo {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .cuerpo-correo {
+    font-size: 0.95rem;
+    height: 120px;
+  }
+
+  .boton {
+    align-self: center;
+    width: 100%;
+    font-size: 1rem;
+  }
 }
