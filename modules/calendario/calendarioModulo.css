@@ -1,11 +1,14 @@
 /* Contenedor principal del calendario */
 .calendario {
   display: inline-block;
+  width: 100%;
+  max-width: 500px;
   text-align: center;
   background-color: white;
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 /* Encabezado con botones y nombre del mes */
@@ -16,6 +19,8 @@
   font-weight: bold;
   font-size: 18px;
   margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .encabezado button {
@@ -30,29 +35,28 @@
   color: black;
 }
 
-/* Estructura tipo tabla con celdas */
+/* Tabla tipo grid */
 .tabla {
   display: grid;
-  grid-template-columns: repeat(6, 40px); /* 1 columna para S1-S4 + 5 días */
-  gap: 10px;
-  justify-content: center;
+  grid-template-columns: repeat(6, 1fr); /* 6 columnas que se reparten el ancho */
+  gap: 8px;
 }
 
-/* Etiqueta de fila como "S1", "S2"... */
+/* Etiquetas de filas como S1, S2... */
 .etiqueta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  aspect-ratio: 1 / 1;
   border: 1px solid black;
   font-weight: bold;
   border-radius: 6px;
-  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
 }
 
 /* Celdas de los días */
 .celda {
-  width: 40px;
-  height: 40px;
+  aspect-ratio: 1 / 1;
   border: 2px solid black;
   border-radius: 6px;
   cursor: pointer;
@@ -60,22 +64,23 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  font-size: 14px;
   transition: background-color 0.3s ease;
 }
 
-/* Colores de estado */
+/* Estados */
 .presente {
-  background-color: #4caf50; /* verde */
+  background-color: #4caf50;
   color: white;
 }
 
 .ausente {
-  background-color: #f44336; /* rojo */
+  background-color: #f44336;
   color: white;
 }
 
 .tarde {
-  background-color: #ffa500; /* naranja */
+  background-color: #ffa500;
   color: white;
 }
 
@@ -84,3 +89,29 @@
   color: black;
 }
 
+/* === RESPONSIVE DESIGN === */
+
+/* Para pantallas pequeñas (celular) */
+@media (max-width: 500px) {
+  .calendario {
+    padding: 15px;
+  }
+
+  .encabezado {
+    font-size: 16px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .encabezado button {
+    font-size: 20px;
+  }
+
+  .tabla {
+    gap: 6px;
+  }
+
+  .celda, .etiqueta {
+    font-size: 12px;
+  }
+}
