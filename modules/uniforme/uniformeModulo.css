@@ -21,6 +21,7 @@
     justify-content: space-around;
     align-items: center;
     margin-bottom: 12px;
+    flex-wrap: wrap;
 }
 
 .icono-uniforme {
@@ -45,8 +46,7 @@
     font-size: 14px;
 }
 
-
-.boton1{
+.boton1 {
     padding: 8px 12px;
     border-radius: 5px;
     cursor: pointer;
@@ -62,4 +62,60 @@
     font-size: 14px;
     color: black;
     float: right; 
+}
+
+/* 📱 Móvil: hasta 600px */
+@media (max-width: 600px) {
+    .div-uniforme {
+        width: 90%;
+        height: auto;
+        padding: 12px;
+    }
+
+    .texto-uniforme {
+        font-size: 16px;
+    }
+
+    .icono-uniforme {
+        width: 30px;
+        height: 30px;
+    }
+
+    .cuerpo-uniforme {
+        height: 70px;
+        font-size: 13px;
+    }
+
+    .boton1, .boton2 {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+}
+
+/* 💻 Tablet: 601px a 1024px */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .div-uniforme {
+        width: 85%;
+        height: auto;
+        padding: 14px;
+    }
+
+    .texto-uniforme {
+        font-size: 17px;
+    }
+
+    .icono-uniforme {
+        width: 33px;
+        height: 33px;
+    }
+
+    .cuerpo-uniforme {
+        height: 75px;
+        font-size: 13.5px;
+    }
+
+    .boton1, .boton2 {
+        font-size: 13.5px;
+        padding: 7px 11px;
+    }
 }
