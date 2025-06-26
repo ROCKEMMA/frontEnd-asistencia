@@ -2,6 +2,7 @@ import { cargarCSS } from "../../controles/controlCSS.js";
 import { headerModulo } from "../../modules/header/headerModulo.js";
 import { crearGraficaAsistencia } from "../../modules/nivelGrafico/nivelGraficoModulo.js";
 import { consultarPorcentajePorNivel } from "../../controles/consultarPromedioPorNivel.js";
+import { GraficaAlumno } from "../../modules/graficoAlumno/alumnoGraficoModulo.js";
 
 export async function proyeccionView() {
   cargarCSS("../views/proyeccion/proyeccionView.css");
@@ -49,3 +50,5 @@ export async function proyeccionView() {
 proyeccionView().then((vista) => {
   document.body.appendChild(vista);
 });
+
+document.body.appendChild(GraficaAlumno());
