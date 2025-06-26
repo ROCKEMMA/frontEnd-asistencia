@@ -1,66 +1,131 @@
 import { cargarCSS } from "../../controles/controlCSS.js";
 
 export function headerModulo(logo, nombreUsuario) {
-    cargarCSS('../modules/header/headerModulo.css');
+  cargarCSS("../modules/header/headerModulo.css");
 
-    const usuario = JSON.parse(localStorage.getItem("usuario"));
-    
-    let header = document.createElement('header');
-    header.className = "header";
+  const usuario = JSON.parse(localStorage.getItem("usuario"));
 
-    // Botón de menú
-    let menuBtn = document.createElement('button');
-    menuBtn.innerHTML = "☰";
-    menuBtn.className = "menu-btn";
-    header.appendChild(menuBtn);
+  // Crear header
+  const header = document.createElement("header");
+  header.className = "header";
 
-    // Menú desplegable lateral
-    let sidebar = document.createElement('div');
-    sidebar.className = "sidebar";
-    sidebar.innerHTML = `
-        <ul class="sidebar-menu">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Perfil</a></li>
-            <li><a href="#">Configuración</a></li>
-            <li><a href="proyecciones.html">Proyección</a></li>
-        </ul>
-        <button class="logout-btn logout-sidebar-btn">Salir</button>
-    `;
-    document.body.appendChild(sidebar);
+  // Botón menú
+  const menuBtn = document.createElement("button");
+  menuBtn.className = "menu-btn";
+  menuBtn.textContent = "≡";
+  header.appendChild(menuBtn);
 
-    // Evento para cerrar sesión desde botón dentro del menú
-    sidebar.querySelector('.logout-sidebar-btn').addEventListener("click", () => {
-        localStorage.removeItem("usuario");
-        window.location.href = "../index.html";
+  // Nombre de usuario
+  const spanNombre = document.createElement("span");
+  spanNombre.className = "user-name";
+  spanNombre.textContent = usuario.user.nombre;
+  header.appendChild(spanNombre);
+
+  // Imagen de usuario
+  const imgLogo = document.createElement("img");
+  imgLogo.src = usuario.user.link_img;
+  imgLogo.alt = "Logo usuario";
+  imgLogo.className = "user-logo";
+  header.appendChild(imgLogo);
+
+  // Crear sidebar
+  const sidebar = document.createElement("div");
+  sidebar.className = "sidebar";
+
+  const ulMenu = document.createElement("ul");
+  ulMenu.className = "sidebar-menu";
+
+  const items = [
+    { icon: "☐", text: "Inicio", href: "dasboar.html" },
+    { icon: "➤", text: "Perfil", href: "#" },
+    { icon: "⚙", text: "Configuración", href: "#" },
+    { icon: "☷", text: "Proyección", href: "proyecciones.html" },
+  ];
+
+  items.forEach(({ icon, text, href }) => {
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.href = href;
+    a.textContent = `${icon} ${text}`;
+    li.appendChild(a);
+    ulMenu.appendChild(li);
+  });
+
+  // Submenú de grados (carga dinámica)
+  const gradosLi = document.createElement("li");
+  gradosLi.className = "submenu";
+
+  const gradosToggle = document.createElement("span");
+  gradosToggle.className = "submenu-toggle";
+  gradosToggle.textContent = "➤ Grados";
+  gradosLi.appendChild(gradosToggle);
+
+  const gradosList = document.createElement("ul");
+  gradosList.className = "submenu-list";
+
+  // Cargar grados desde API
+  fetch(
+    `https://asistencia.jossuefuentes.space/grados?tipo_usuario_id=${usuario.user.tipo_usuario_id}&nivel_id=${usuario.user.nivel_id}`
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      data.forEach((grado) => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = "#";
+        a.textContent = grado.nombre;
+
+        a.addEventListener("click", () => {
+          // Actualizar usuario con grado seleccionado
+          const usuario = JSON.parse(localStorage.getItem("usuario"));
+          usuario.grado_proyeccion_activo_id = grado.id;
+          localStorage.setItem("usuario", JSON.stringify(usuario));
+
+          // Redirigir a proyeccionGrado.html
+          window.location.href = "proyeccionGrado.html";
+        });
+
+        li.appendChild(a);
+        gradosList.appendChild(li);
+      });
+    })
+    .catch((err) => {
+      console.error("Error al cargar grados:", err);
     });
 
-    // Mostrar/Ocultar menú
-    menuBtn.addEventListener("click", (event) => {
-        event.stopPropagation();
-        sidebar.classList.toggle("open");
-    });
+  gradosLi.appendChild(gradosList);
+  ulMenu.appendChild(gradosLi);
+  sidebar.appendChild(ulMenu);
 
-    // Cerrar menú al hacer clic fuera
-    document.addEventListener("click", (event) => {
-        const esClickDentroDelSidebar = sidebar.contains(event.target);
-        const esClickEnMenuBtn = menuBtn.contains(event.target);
+  // Botón cerrar sesión
+  const logoutBtn = document.createElement("button");
+  logoutBtn.className = "logout-btn logout-sidebar-btn";
+  logoutBtn.textContent = "Salir";
+  sidebar.appendChild(logoutBtn);
 
-        if (!esClickDentroDelSidebar && !esClickEnMenuBtn) {
-            sidebar.classList.remove("open");
-        }
-    });
+  // Eventos
+  logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("usuario");
+    window.location.href = "../index.html";
+  });
 
-    let spanNombre = document.createElement('span');
-    spanNombre.textContent = usuario.user.nombre;
-    spanNombre.className = "user-name";
-    header.appendChild(spanNombre);
+  menuBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    sidebar.classList.toggle("open");
+  });
 
-    let imgLogo = document.createElement('img');
-    imgLogo.src = usuario.user.link_img;
-    imgLogo.alt = "Logo usuario";
-    imgLogo.className = "user-logo";
-    header.appendChild(imgLogo);
+  document.addEventListener("click", (event) => {
+    const clickDentroSidebar = sidebar.contains(event.target);
+    const clickMenuBtn = menuBtn.contains(event.target);
+    if (!clickDentroSidebar && !clickMenuBtn) {
+      sidebar.classList.remove("open");
+    }
+  });
 
+  gradosToggle.addEventListener("click", () => {
+    gradosList.classList.toggle("open");
+  });
 
-    return header;
+  document.body.appendChild(sidebar);
+  return header;
 }

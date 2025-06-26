@@ -42,7 +42,7 @@
 }
 
 .menu-btn {
-    font-size: 2rem;
+    font-size: 3.5rem;
     background: none;
     border: none;
     cursor: pointer;
@@ -104,4 +104,31 @@
 
 .logout-sidebar-btn:hover {
     background-color: #c0392b;
+}
+
+.submenu {
+    cursor: pointer;
+    user-select: none;
+}
+.submenu-toggle {
+    font-size: 1.3rem ;
+}
+
+.submenu .submenu-list {
+    list-style: none;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    padding: 0;
+    display: none;
+    flex-direction: column;
+    font-size: 1.3rem;
+}
+
+.submenu .submenu-list.open {
+    display: flex;
+}
+
+.submenu .submenu-list li a {
+    font-size: 1.1rem;
+    padding-left: 0.5rem;
 }

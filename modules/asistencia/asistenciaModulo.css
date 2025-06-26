@@ -36,7 +36,7 @@
     width: 20px;
     height: 20px;
     background-color: #ffd8a8;
-    border: 1px solid #f08c00 ;
+    border: 1px solid #f08c00;
 }
 
 .presente {
@@ -48,8 +48,9 @@
 
 .sinObservacion {
     background-color: #8fb3b6;
+    background-color: rgba(54, 162, 235, 0.7);
 }
 
 .conObservacion {
-    background-color: gold;
+    background-color: #ffd8a8;
 }
