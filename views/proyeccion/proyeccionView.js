@@ -2,6 +2,7 @@ import { cargarCSS } from "../../controles/controlCSS.js";
 import { headerModulo } from "../../modules/header/headerModulo.js";
 import { crearGraficaAsistencia } from "../../modules/nivelGrafico/nivelGraficoModulo.js";
 import { consultarPorcentajePorNivel } from "../../controles/consultarPromedioPorNivel.js";
+import { cargarItemGraficoGrado } from "../../modules/graficoItemGrado/graficoItemGrado.js";
 
 export async function proyeccionView() {
   cargarCSS("../views/proyeccion/proyeccionView.css");
@@ -16,33 +17,43 @@ export async function proyeccionView() {
 
   const seccionProyecciones = document.createElement("section");
   seccionProyecciones.className = "seccion-proyecciones";
-
-  const configuraciones = [
-    { nivel: 3, mes: 5 },
-    { nivel: 4, mes: 5 },
-    { nivel: 1, mes: 5 },
-  ];
-
   try {
-    const datosArray = await Promise.all(
-      configuraciones.map(({ nivel, mes }) =>
-        consultarPorcentajePorNivel(nivel, mes)
-      )
-    );
+    const usuarioString = localStorage.getItem("usuario");
+    const usuarioObj = JSON.parse(usuarioString);
+    const nivel_id = usuarioObj.user.nivel_id;
 
-    for (const datos of datosArray) {
-      const grafica = await crearGraficaAsistencia(
-        datos.nombreNivel,
-        datos.porcentajesGrados
+
+    const datos = await consultarPorcentajePorNivel(nivel_id, 5);
+    const grafica = await crearGraficaAsistencia(
+      datos.nombreNivel,
+      datos.porcentajesGrados
+    );
+    seccionProyecciones.appendChild(grafica);
+    contenedor.appendChild(seccionProyecciones);
+
+    let seccionGraficos = document.createElement("section");
+    seccionGraficos.className = "seccion-graficos";
+
+    datos.porcentajesGrados.forEach((element) => {
+      seccionGraficos.appendChild(
+        cargarItemGraficoGrado(
+          datos.nombreNivel,
+          element.grado_nombre,
+          0.8,
+          "Jossue Fuentes"
+        )
       );
-      seccionProyecciones.appendChild(grafica);
-    }
+
+      contenedor.appendChild(seccionGraficos);
+    });
   } catch (error) {
     console.log("Error al consultar los datos:", error);
     seccionProyecciones.innerHTML = "<p>Error al cargar los datos</p>";
   }
 
-  contenedor.appendChild(seccionProyecciones);
+  
+
+
   return contenedor;
 }
 

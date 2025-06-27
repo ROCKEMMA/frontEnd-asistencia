@@ -32,14 +32,8 @@ export async function cargarProyeccionGrado() {
     if (!response.ok) throw new Error("Error al obtener datos del servidor");
 
     const data = await response.json();
-
-    // Aquí accedes al arreglo dentro del objeto
     const porcentajesAlumnos = data.porcentajesAlumnos || [];
-
-    console.log(porcentajesAlumnos);
-
-    // Como no tienes grado_nombre, usa un texto fijo o recupéralo por otro medio
-    const nombreGrado = "Grado " + gradoId;
+    const nombreGrado = data.nombreGrado[0].nombre;
 
     const grafica = await crearGraficaAsistenciaGrado(
       nombreGrado,

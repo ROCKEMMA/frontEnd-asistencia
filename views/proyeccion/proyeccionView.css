@@ -2,3 +2,12 @@
     width: 95%;
     margin: auto;
 }
+.seccion-graficos {
+    width: 90%;
+    margin: auto;
+    margin-top: 8rem;
+    margin-bottom: 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}

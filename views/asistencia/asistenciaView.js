@@ -40,21 +40,17 @@ function asistenciaView(){
         try {
             const response = await fetch(`https://asistencia.jossuefuentes.space/alumnos?grado_id=${grado.gradoId}`);
             const data = await response.json();
-            console.log(data);
             
             let divAlumnos = document.createElement('div');
             divAlumnos.className = "div-alumnos";
             data.forEach(element => {
                 divAlumnos.appendChild(moduloAsistencia(element.nombres,element.estado));
-                console.log(element.estado);
             });
             sectionAsistencia.appendChild(divAlumnos);
             
             // -----------------------------------------------------------------------
             let consultaEstadoAsistencia = await verificarAsistencia(grado.gradoId);
-            console.log("Mi resultado",consultaEstadoAsistencia);
             let estadoAsistencia = consultaEstadoAsistencia.estado_asistencia != 'completado';
-            console.log(estadoAsistencia)
             let textoBoton = estadoAsistencia ? "Tomar Asistencia": "Actualizar";
             let clasebtn = estadoAsistencia ?  "btn-tomar-asistencia": "btn-tomar-asistencia-true";
 
