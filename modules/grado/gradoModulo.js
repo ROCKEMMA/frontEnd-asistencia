@@ -14,12 +14,18 @@ export function moduloGrado(gradoId,nombreGrado,estado){
     blque1.appendChild(texto1);
 
     blque1.addEventListener("click",()=>{
-        localStorage.setItem("gradoActivo",JSON.stringify({gradoId: gradoId, nombreGrado: nombreGrado}))       
-        const usuario = JSON.parse(localStorage.getItem("gradoActivo"));
-        console.log(usuario);
-        setTimeout(() => {
-            window.location.href = "./asistencia.html";
-        }, 100);
+
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    usuario.sesion.grado_activo = gradoId;
+    usuario.sesion.nombre_grado_activo = nombreGrado;
+    localStorage.setItem("usuario", JSON.stringify(usuario));
+
+      // Confirmación por consola (opcional)
+      console.log(usuario);
+
+      setTimeout(() => {
+        window.location.href = "./asistencia.html";
+      }, 100);
     });
 
     //retornar mi modulo

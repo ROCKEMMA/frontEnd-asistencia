@@ -8,17 +8,15 @@ import { verificarAsistencia } from "../../controles/verificarAsistencia.js";
 function asistenciaView(){
     cargarCSS("../views/asistencia/asistenciaView.css");
 
+    // HEADER
+    document.body.appendChild(headerModulo());
+
+    // ASISTENCIAS VIEW
     let sectionAsistencia = document.createElement('section');
     sectionAsistencia.className = "section-asistencia";
 
-    document.body.appendChild(headerModulo("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.TCcYPZkra7mTMPCWre3uagAAAA%26pid%3DApi&f=1&ipt=8f255ef1389d07972910aa50f4f5e2fa0a9cb54dbb3a090d9aa506d50a588d0f","Jossue Fuentes"));
-    
-    const grado = JSON.parse(localStorage.getItem("gradoActivo"));
-    let h2 = document.createElement('h2');
-    h2.innerText = grado.nombreGrado;
-    sectionAsistencia.appendChild(h2);
+    const grado = JSON.parse(localStorage.getItem("usuario")).sesion.grado_activo;
      
-
     let divMarcarTodo = document.createElement('div');
     divMarcarTodo.className = "div-marcar-todo";
     divMarcarTodo.innerText = "Todos presentes"
@@ -38,7 +36,7 @@ function asistenciaView(){
 
     async function obtenerAlumnos (){
         try {
-            const response = await fetch(`https://asistencia.jossuefuentes.space/alumnos?grado_id=${grado.gradoId}`);
+            const response = await fetch(`https://asistencia.jossuefuentes.space/alumnos?grado_id=${grado}`);
             const data = await response.json();
             
             let divAlumnos = document.createElement('div');
@@ -49,7 +47,7 @@ function asistenciaView(){
             sectionAsistencia.appendChild(divAlumnos);
             
             // -----------------------------------------------------------------------
-            let consultaEstadoAsistencia = await verificarAsistencia(grado.gradoId);
+            let consultaEstadoAsistencia = await verificarAsistencia(grado);
             let estadoAsistencia = consultaEstadoAsistencia.estado_asistencia != 'completado';
             let textoBoton = estadoAsistencia ? "Tomar Asistencia": "Actualizar";
             let clasebtn = estadoAsistencia ?  "btn-tomar-asistencia": "btn-tomar-asistencia-true";

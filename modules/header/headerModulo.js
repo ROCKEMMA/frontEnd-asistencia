@@ -1,9 +1,10 @@
 import { cargarCSS } from "../../controles/controlCSS.js";
 
-export function headerModulo(logo, nombreUsuario) {
+export function headerModulo() {
   cargarCSS("../modules/header/headerModulo.css");
 
   const usuario = JSON.parse(localStorage.getItem("usuario"));
+  console.log(usuario);
 
   // Crear header
   const header = document.createElement("header");
@@ -15,11 +16,19 @@ export function headerModulo(logo, nombreUsuario) {
   menuBtn.textContent = "≡";
   header.appendChild(menuBtn);
 
-  // Nombre de usuario
-  const spanNombre = document.createElement("span");
-  spanNombre.className = "user-name";
-  spanNombre.textContent = usuario.user.nombre;
-  header.appendChild(spanNombre);
+  // Título header
+  if(usuario.sesion.grado_activo!=""){
+    const spanNombre = document.createElement("span");
+    spanNombre.className = "user-name";
+    spanNombre.textContent = usuario.sesion.nombre_grado_activo;
+    header.appendChild(spanNombre);
+  }else {
+    const spanNombre = document.createElement("span");
+    spanNombre.className = "user-name";
+    spanNombre.textContent = usuario.user.nombre;
+    header.appendChild(spanNombre);
+  }
+
 
   // Imagen de usuario
   const imgLogo = document.createElement("img");
