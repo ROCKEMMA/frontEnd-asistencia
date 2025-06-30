@@ -4,7 +4,6 @@ export function headerModulo() {
   cargarCSS("../modules/header/headerModulo.css");
 
   const usuario = JSON.parse(localStorage.getItem("usuario"));
-  console.log(usuario);
 
   // Crear header
   const header = document.createElement("header");

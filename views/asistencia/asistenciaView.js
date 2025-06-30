@@ -4,6 +4,7 @@ import { moduloAsistencia } from "../../modules/asistencia/asistenciaModulo.js";
 import { registrarAsistencia } from "../../controles/enviarAsistencia.js";
 import { prepararDatosAsistencia } from "../../controles/empaquetarAsistencia.js";
 import { verificarAsistencia } from "../../controles/verificarAsistencia.js";
+import { cargarFormularioAgregarAlumno } from "../../modules/formularioAgregarAlumno/agregarAlumnoFormulario.js";
 
 function asistenciaView(){
     cargarCSS("../views/asistencia/asistenciaView.css");
@@ -22,6 +23,15 @@ function asistenciaView(){
     divMarcarTodo.innerText = "Todos presentes"
     sectionAsistencia.appendChild(divMarcarTodo);
 
+    let iconoAgregarAlumno = document.createElement('img');
+    iconoAgregarAlumno.src = "https://raw.githubusercontent.com/ROCKEMMA/assets/bb82b2d7cc9331ceed368217fa820c282a6b68f5/ico_google/person_add.svg";
+    iconoAgregarAlumno.className = "ico-agregarAlumno";
+    sectionAsistencia.appendChild(iconoAgregarAlumno);
+
+    iconoAgregarAlumno.addEventListener('click', ()=>{
+        sectionAsistencia.appendChild(cargarFormularioAgregarAlumno());
+    });
+
     let marcado = false;
     divMarcarTodo.addEventListener("click", () => {
         marcado = !marcado;
@@ -32,7 +42,6 @@ function asistenciaView(){
             cuadro.classList.add(marcado ? "presente" : "ausente");
         });
     });
-
 
     async function obtenerAlumnos (){
         try {

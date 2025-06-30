@@ -1,8 +1,8 @@
 .section-asistencia {
     padding: 1rem;
     display: grid;
-    grid-template-columns: 1fr auto;
-    row-gap: 2rem;
+    grid-template-columns: 1fr auto auto;
+    gap: 2rem;
     align-items: center;
 }
 
@@ -25,6 +25,9 @@
 
 .div-marcar-todo .div-alumnos {
     grid-column: 1/ -1;
+}
+.ico-agregarAlumno {
+    width: 2.6rem;
 }
 
 .div-alumnos {
