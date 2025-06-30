@@ -1,95 +1,123 @@
 .login-container {
-    max-width: 40rem;
-    width: 90%;
-    margin: auto;
-    padding: 2rem;
-    border-radius: 0.8rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    min-height: 100vh;
-    margin-top: 30%;
+  width: 100%;
+  max-width: 40rem;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  min-height: 100vh;
 }
 
+/* Título del login */
 .login-title {
-    text-align: center;
-    color: #2d3748;
-    font-size: 2rem;
-    font-weight: bold;
+  text-align: center;
+  color: #2d3748;
+  font-size: 2.4rem;
+  font-weight: bold;
 }
 
+/* Grupo de campos */
 .input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
+/* Etiqueta con ícono */
 .input-label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 600;
-    color: #4a5568;
-    font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #4a5568;
+  font-size: 1.6rem;
 }
 
+/* Iconos */
 .iconos {
-    width: 25.33px;
-    height: 25.33px;
+  width: 25px;
+  height: 25px;
 }
 
+/* Campo de entrada */
 .input-field {
-    padding: 1.2rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 0.4rem;
-    font-size: 1.6rem;
-    transition: all 0.2s ease;
+  padding: 1.2rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.4rem;
+  font-size: 1.6rem;
+  transition: all 0.2s ease;
 }
 
 .input-field:focus {
-    outline: none;
-    border-color: #4299e1;
-    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
 }
 
+/* Enlace recuperación */
 .recovery-link {
-    text-align: center;
-    color: #4299e1;
-    text-decoration: none;
-    font-size: 1.5rem;
-    transition: color 0.2s ease;
+  text-align: center;
+  color: #4299e1;
+  text-decoration: none;
+  font-size: 1.5rem;
+  transition: color 0.2s ease;
 }
 
 .recovery-link:hover {
-    color: #3182ce;
-    text-decoration: underline;
+  color: #3182ce;
+  text-decoration: underline;
 }
 
+/* Botón login */
 .login-button {
-    padding: 1rem; 
-    background-color: #3366ff;
-    color:ivory;
-    border: none;
-    border-radius: 0.4rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    margin-left: auto; 
-    display: block;
-    min-width: 8rem; 
+  padding: 1rem;
+  background-color: #3366ff;
+  color: ivory;
+  border: none;
+  border-radius: 0.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-left: auto;
+  display: block;
+  min-width: 8rem;
 }
 
 .login-button:hover {
-    background-color: #3182ce;
+  background-color: #3182ce;
 }
 
 @media (max-width: 480px) {
-    .login-container {
-        padding: 1.5rem;
-        min-height: calc(100vh - 3rem);
-    }
+  .login-container {
+    padding: 1.5rem 1rem;
+    min-height: 100vh;
+  }
 
-    .recovery-link {
-        margin-bottom: 0.5rem;
-    }
+  .login-title {
+    font-size: 2rem;
+  }
+
+  .input-field {
+    font-size: 1.5rem;
+  }
+
+  .login-button {
+    width: 100%;
+    margin-left: 0;
+    text-align: center;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 1024px) {
+  .login-container {
+    max-width: 50rem;
+    padding: 2rem 3rem;
+  }
+
+  .login-title {
+    font-size: 2.2rem;
+  }
 }

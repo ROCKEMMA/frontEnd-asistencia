@@ -31,7 +31,7 @@ export function headerModulo() {
 
   // Imagen de usuario
   const imgLogo = document.createElement("img");
-  imgLogo.src = usuario.user.link_img;
+  imgLogo.src = "../assets/icos/perfil.svg";
   imgLogo.alt = "Logo usuario";
   imgLogo.className = "user-logo";
   header.appendChild(imgLogo);

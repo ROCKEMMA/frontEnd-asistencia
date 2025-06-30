@@ -1,18 +1,32 @@
 .section-grados {
-    padding: 1rem;
-    
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
 }
 
 .nombre-nivel {
-    align-self: flex-start;
-    font-size: 2rem;
-    margin: 1rem 0;
+  align-self: flex-start;
+  font-size: 2rem;
+  margin: 1rem 0;
 }
 
-.ocultar{
-    display: none;
+.ocultar {
+  display: none;
+}
+
+/* ✅ Adaptación para tablet y PC: 4 columnas fijas */
+@media (min-width: 600px) {
+  .section-grados {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+    gap: 1.5rem;
+    justify-items: center;
+    align-items: start;
+  }
+
+  .nombre-nivel {
+    grid-column: 1 / -1; /* Ocupa toda la fila */
+  }
 }
