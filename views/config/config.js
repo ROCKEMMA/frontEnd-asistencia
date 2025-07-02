@@ -33,7 +33,9 @@ export function cargarConfigView() {
         const usuario = JSON.parse(localStorage.getItem("usuario"));
         const nivel_id = usuario.user.nivel_id;
 
-      const res = await fetch(`http://localhost:3000/buscar-alumno?nivel_id=${nivel_id}`);
+      const res = await fetch(
+        `https://asistencia.jossuefuentes.space/buscar-alumno?nivel_id=${nivel_id}`
+      );
       const data = await res.json();
       listaAlumnos = data;
     } catch (error) {
@@ -62,15 +64,30 @@ export function cargarConfigView() {
     btnEliminar.textContent = "Eliminar Alumno";
     btnEliminar.classList.add("btn-eliminar");
 
-    btnEliminar.addEventListener("click", () => {
-      const confirmado = confirm(
-        `¿Eliminar a ${alumno.nombres} ${alumno.apellidos}?`
-      );
-      if (confirmado) {
-        alert("🗑️ Alumno eliminado (simulado)");
-        panelInfo.innerHTML = "";
+    btnEliminar.addEventListener("click", async () => {
+      try {
+        const res = await fetch(
+          `https://asistencia.jossuefuentes.space/eliminar-alumno?correo=${encodeURIComponent(
+            alumno.correo
+          )}`,
+          {
+            method: "DELETE",
+          }
+        );
+
+        if (res.ok) {
+          const resultado = await res.json();
+          console.log("✅ Alumno eliminado:", resultado);
+          location.reload(); // Recarga la página después de la eliminación
+        } else {
+          const error = await res.json();
+          console.error("❌ Error al eliminar:", error);
+        }
+      } catch (err) {
+        console.error("💥 Error de red al eliminar:", err);
       }
     });
+
 
     panelInfo.append(nombre, correo, grado, nivel, btnEliminar);
   }
