@@ -21,3 +21,9 @@ html {
 :root {
     --naranja: #EEA63A;
 }
+
+input,
+textarea,
+select {
+    font-size: 16px;
+}
