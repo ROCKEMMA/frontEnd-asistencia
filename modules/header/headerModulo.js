@@ -46,7 +46,7 @@ export function headerModulo() {
   const items = [
     { icon: "☐", text: "Inicio", href: "dasboar.html" },
     { icon: "➤", text: "Perfil", href: "#" },
-    { icon: "⚙", text: "Configuración", href: "#" },
+    { icon: "⚙", text: "Configuración", href: "config.html" },
     { icon: "☷", text: "Proyección", href: "proyecciones.html" },
   ];
 
