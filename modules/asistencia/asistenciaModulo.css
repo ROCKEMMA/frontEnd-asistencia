@@ -14,7 +14,8 @@
 .texto-asisten {
     font-size: 1.2rem;
 }
-.div-asistencia{
+
+.div-asistencia {
     width: 20px;
     height: 20px;
     margin: 5px;
@@ -24,7 +25,7 @@
     margin-left: 50px;
 }
 
-.div-cuadrito2{
+.div-cuadrito2 {
     width: 20px;
     height: 20px;
     margin: 5px;
@@ -32,7 +33,7 @@
     border: 1px solid #1971c2;
 }
 
-.div-cuadrito3{
+.div-cuadrito3 {
     width: 20px;
     height: 20px;
     background-color: #ffd8a8;
@@ -42,15 +43,39 @@
 .presente {
     background-color: #b2f2bb;
 }
+
 .ausente {
     background-color: #dd7064;
 }
 
 .sinObservacion {
-    background-color: #8fb3b6;
     background-color: rgba(54, 162, 235, 0.7);
 }
 
 .conObservacion {
     background-color: #ffd8a8;
 }
+.overlay-uniforme {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.ventana-Uniforme {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+  max-width: 600px;
+  max-height: 600vh;
+  overflow-y: auto;
+}
+
+
+

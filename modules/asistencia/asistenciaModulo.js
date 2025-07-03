@@ -1,4 +1,5 @@
 import { cargarCSS } from "../../controles/controlCSS.js";
+import { abrirModalUniforme } from "../uniforme/uniformeModulo.js";
 
 export function moduloAsistencia(nombreAlumno, estado) {
   cargarCSS("../modules/asistencia/asistenciaModulo.css");
@@ -37,14 +38,24 @@ export function moduloAsistencia(nombreAlumno, estado) {
     } else {
       divUniforme.classList.replace("sinObservacion", "conObservacion");
     }
-  });
 
+    abrirModalUniforme(nombreAlumno, "/api/uniforme");
+  });
   div.appendChild(divUniforme);
   // -------------------------------------------------------------
 
   let imgCorreo = document.createElement("img");
   imgCorreo.src = "../assets/icos/email_ico.svg";
   imgCorreo.className = "img-correo";
+
+  imgCorreo.addEventListener("click", () => {
+    const subject = encodeURIComponent(`Asunto para ${nombreAlumno}`);
+    const body = encodeURIComponent(`Hola,\n\nQuiero enviarte este mensaje referente a ${nombreAlumno}.`);
+
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=&su=${subject}&body=${body}`;
+    window.open(gmailUrl, "_blank");
+  });
+
   div.appendChild(imgCorreo);
 
   return div;
