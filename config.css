@@ -1,23 +1,59 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    width: 100%;
-    max-width: 40rem;
-    margin: auto;
-    font-family: "Roboto Mono", monospace;
-    background-color: #f5f8ff;
-    color: #333;
-}
-
-html {
-    font-size: 10px;
-    font-family:monospace;
-}
-
 :root {
-    --naranja: #EEA63A;
+  --naranja: #EEA63A;
+  --fuente-base: "Roboto Mono", monospace;
+}
+
+/* Reset universal */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base del HTML para usar rem (1rem = 10px) */
+html {
+  font-size: 62.5%;
+  font-family: var(--fuente-base);
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+/* Estilos generales del body */
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: #f5f8ff;
+  color: #333;
+  font-family: var(--fuente-base);
+  line-height: 1.5;
+  padding: 2rem;
+  overflow-x: hidden; /* evita desplazamiento lateral */
+}
+
+/* Tamaño fijo máximo para escritorio, pero fluido en móviles */
+.container {
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Media Query para celular */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 1rem;
+  }
+}
+
+/* Media Query para tablet */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .container {
+    max-width: 70rem;
+  }
 }

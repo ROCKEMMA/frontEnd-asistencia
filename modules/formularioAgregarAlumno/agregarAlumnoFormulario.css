@@ -9,21 +9,22 @@
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    padding: 1rem;
 }
 
 .ventana-formulario {
     background-color: white;
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    min-width: 320px;
-    max-width: 90%;
+    width: 100%;
+    max-width: 100%;
 }
 
 .ventana-formulario h2 {
     margin-top: 0;
     margin-bottom: 1rem;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
 .ventana-formulario label {
@@ -45,6 +46,7 @@
     display: flex;
     gap: 1rem;
     justify-content: flex-end;
+    flex-wrap: wrap;
 }
 
 .botones-formulario button {
@@ -52,6 +54,8 @@
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    flex: 1;
+    min-width: 100px;
 }
 
 .botones-formulario button[type="submit"] {
@@ -62,4 +66,37 @@
 .botones-formulario button#cancelar {
     background-color: #f44336;
     color: white;
+}
+
+/* Tablet (min 600px) */
+@media (min-width: 600px) {
+    .ventana-formulario {
+        max-width: 500px;
+        padding: 2rem;
+    }
+
+    .ventana-formulario h2 {
+        font-size: 1.5rem;
+    }
+
+    .botones-formulario {
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+    }
+
+    .botones-formulario button {
+        flex: unset;
+        min-width: auto;
+    }
+}
+
+/* Escritorio (min 1024px) */
+@media (min-width: 1024px) {
+    .ventana-formulario {
+        max-width: 600px;
+    }
+
+    .ventana-formulario h2 {
+        font-size: 1.7rem;
+    }
 }
