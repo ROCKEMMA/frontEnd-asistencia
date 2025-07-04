@@ -1,5 +1,9 @@
 import { headerModulo } from "../../modules/header/headerModulo.js";
 import { cargarCSS } from "../../controles/controlCSS.js";
+import { cargarEliminarAlumno } from "../../modules/eliminarAlumno/eliminarAlumno.js";
+import { cargarAgregarUsuario } from "../../modules/agregarUsuiario/agregarUsuarioMoule.js";
+import { cargarAgregarGrado } from "../../modules/agregarGrado/agregarGradoModule.js";
+import { cargarEstablecerHorari } from "../../modules/establecerHorario/establecerHorarioModule.js";
 
 export function cargarConfigView() {
   cargarCSS("../views/config/config.css");
@@ -7,114 +11,73 @@ export function cargarConfigView() {
   const section = document.createElement("section");
   section.classList.add("config-view");
 
-  const titulo = document.createElement("h2");
-  titulo.textContent = "Configuración de Alumnos";
-  section.appendChild(titulo);
+  const botonesDiv = document.createElement("div");
+  botonesDiv.classList.add("botones-div");
 
-  const inputBuscar = document.createElement("input");
-  inputBuscar.type = "text";
-  inputBuscar.placeholder = "Buscar alumno por nombre...";
-  inputBuscar.classList.add("buscador-alumno");
-  section.appendChild(inputBuscar);
+  const mostrarDiv = document.createElement("div");
+  mostrarDiv.classList.add("mostrar-div");
 
-  const listaResultados = document.createElement("ul");
-  listaResultados.classList.add("lista-alumnos");
-  section.appendChild(listaResultados);
+  const mensajeBanner = document.createElement("div");
+  mensajeBanner.classList.add("banner-mensaje");
+  mensajeBanner.textContent =
+    "En esta sección se administra el acceso y configuración de usuarios de la plataforma.";
 
-  const panelInfo = document.createElement("div");
-  panelInfo.classList.add("info-alumno");
-  section.appendChild(panelInfo);
+  mostrarDiv.appendChild(mensajeBanner);
+  
 
-  // Almacenar aquí los alumnos
-  let listaAlumnos = [];
 
-  async function cargarAlumnos() {
-    try {
-        const usuario = JSON.parse(localStorage.getItem("usuario"));
-        const nivel_id = usuario.user.nivel_id;
+  const botonesVistas1 = [
+    [
+    "Eliminar usuario",
+    "Agregar usuario",
+    "Agregar grado",
+    "Establecer horario",
+    ],
+    [
+      cargarEliminarAlumno(),
+      cargarAgregarUsuario(),
+      cargarAgregarGrado(),
+      cargarEstablecerHorari(),
+    ]
+  ]
 
-      const res = await fetch(
-        `https://asistencia.jossuefuentes.space/buscar-alumno?nivel_id=${nivel_id}`
-      );
-      const data = await res.json();
-      listaAlumnos = data;
-    } catch (error) {
-      console.error("❌ Error al cargar alumnos:", error);
-    }
-  }
+    const botonesVistas2 = [
+      ["Eliminar usuario"],
+      [cargarEliminarAlumno()],
+    ];
 
-  function mostrarInfoAlumno(alumno) {
-    inputBuscar.value = "";
-    listaResultados.innerHTML = "";
-    panelInfo.innerHTML = "";
+  let user = JSON.parse(localStorage.getItem("usuario")).user.tipo_usuario_id;
 
-    const nombre = document.createElement("p");
-    nombre.textContent = `Nombre: ${alumno.nombres} ${alumno.apellidos}`;
+  let botones = user == 1 ? botonesVistas1 : botonesVistas2;
+  // condición aqui
 
-    const correo = document.createElement("p");
-    correo.textContent = `Correo: ${alumno.correo}`;
+  const [textos, vistas] = botones;
 
-    const grado = document.createElement("p");
-    grado.textContent = `Grado: ${alumno.grado}`;
+  textos.forEach((texto, index) => {
+    const btn = document.createElement("button");
+    btn.textContent = texto;
 
-    const nivel = document.createElement("p");
-    nivel.textContent = `Nivel: ${alumno.nivel}`;
+    btn.addEventListener("click", () => {
+      mostrarDiv.innerHTML = "";
 
-    const btnEliminar = document.createElement("button");
-    btnEliminar.textContent = "Eliminar Alumno";
-    btnEliminar.classList.add("btn-eliminar");
+      const vista = vistas[index];
 
-    btnEliminar.addEventListener("click", async () => {
-      try {
-        const res = await fetch(
-          `https://asistencia.jossuefuentes.space/eliminar-alumno?correo=${encodeURIComponent(
-            alumno.correo
-          )}`,
-          {
-            method: "DELETE",
-          }
-        );
-
-        if (res.ok) {
-          const resultado = await res.json();
-          console.log("✅ Alumno eliminado:", resultado);
-          location.reload(); // Recarga la página después de la eliminación
-        } else {
-          const error = await res.json();
-          console.error("❌ Error al eliminar:", error);
+      if (typeof vista === "function") {
+        const resultado = vista();
+        if (resultado instanceof HTMLElement) {
+          mostrarDiv.appendChild(resultado);
         }
-      } catch (err) {
-        console.error("💥 Error de red al eliminar:", err);
+      } else if (vista instanceof HTMLElement) {
+        mostrarDiv.appendChild(vista);
       }
     });
 
+  botonesDiv.appendChild(btn);
+});
 
-    panelInfo.append(nombre, correo, grado, nivel, btnEliminar);
-  }
-
-  inputBuscar.addEventListener("input", () => {
-    const filtro = inputBuscar.value.trim().toLowerCase();
-    listaResultados.innerHTML = "";
-
-    const resultados = listaAlumnos.filter((alumno) =>
-      alumno.nombres.toLowerCase().includes(filtro)
-    );
-
-    resultados.forEach((alumno) => {
-      const item = document.createElement("li");
-      item.textContent = `${alumno.nombres} ${alumno.apellidos}`;
-      item.classList.add("item-alumno");
-
-      item.addEventListener("click", () => {
-        mostrarInfoAlumno(alumno);
-      });
-
-      listaResultados.appendChild(item);
-    });
-  });
-
-  // Llamar al cargar
-  cargarAlumnos();
+  // Agregar ambos al section
+  section.appendChild(botonesDiv);
+  section.appendChild(mostrarDiv);
 
   return section;
 }
