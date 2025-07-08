@@ -15,6 +15,31 @@ export function cargarAgregarGrado() {
   const form = document.createElement("form");
   form.id = "formulario-grado";
 
+  const etiquetaSelectNivel = document.createElement("label");
+  etiquetaSelectNivel.textContent = "Seleccionar Nivel:";
+  etiquetaSelectNivel.setAttribute("for", "nivel-select");
+  etiquetaSelectNivel.style.fontSize = "16px";
+  const selectNivel = document.createElement("select");
+  selectNivel.id = "nivel-select";
+  selectNivel.name = "nivel-select";
+  const opcionesNivel = [
+    { value: 1, text: "Pre-kinder, nursery" },
+    { value: 2, text: "Pre-primaria" },
+    { value: 3, text: "Primaria" },
+    { value: 4, text: "Basicos" },
+    { value: 5, text: "Diversificado" },
+  ];
+
+  opcionesNivel.forEach(({ value, text }) => {
+    const option = document.createElement("option");
+    option.value = value;
+    option.textContent = text;
+    selectNivel.appendChild(option);
+  });
+
+  form.appendChild(etiquetaSelectNivel);
+  form.appendChild(selectNivel);
+
   // Campo: Nombre del grado
   const label = document.createElement("label");
   label.setAttribute("for", "nombre_grado");
@@ -62,13 +87,13 @@ export function cargarAgregarGrado() {
       return;
     }
 
-    const datos = { nombre };
-
+    const datos = { nombre, nivel_id: parseInt(selectNivel.value) };
+    console.log("📤 Datos a enviar:", datos);
     try {
       console.log("📤 Enviando grado:", datos);
       overlay.remove();
 
-      const res = await fetch("https://asistencia.jossuefuentes.space/reg-grado", {
+      const res = await fetch("https://asistencia.jossuefuentes.space/agregar-grado", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(datos),
