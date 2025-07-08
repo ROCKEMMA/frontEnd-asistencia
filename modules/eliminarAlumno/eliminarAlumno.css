@@ -1,0 +1,83 @@
+/* General */
+.config-view {
+    padding: 2rem;
+    max-width: 100%;
+    margin: 2rem auto;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Título */
+.config-view h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+}
+
+/* Buscador */
+.buscador-alumno {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.buscador-alumno:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+/* Lista de resultados */
+.lista-alumnos {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.item-alumno {
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    background-color: #ecf0f1;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.item-alumno:hover {
+    background-color: #d0dfe6;
+}
+
+/* Panel de información */
+.info-alumno {
+    background-color: #fdfdfd;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 1.5rem;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.03);
+}
+
+.info-alumno p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: #34495e;
+}
+
+.btn-eliminar {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 3px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-eliminar:hover {
+    background-color: #c0392b;
+}

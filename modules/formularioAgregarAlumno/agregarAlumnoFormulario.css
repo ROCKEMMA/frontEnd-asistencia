@@ -68,6 +68,12 @@
     color: white;
 }
 
+
+.ocultar {
+    display: none;
+}
+
+
 /* Tablet (min 600px) */
 @media (min-width: 600px) {
     .ventana-formulario {
