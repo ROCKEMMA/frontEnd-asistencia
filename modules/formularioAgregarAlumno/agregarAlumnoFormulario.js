@@ -14,7 +14,6 @@ export function cargarFormularioAgregarAlumno() {
 
   const form = document.createElement("form");
   form.id = "formulario-alumno";
-
   const campos = [
     { label: "Nombres:", id: "nombres", type: "text" },
     { label: "Apellidos:", id: "apellidos", type: "text" },
@@ -33,6 +32,7 @@ export function cargarFormularioAgregarAlumno() {
     input.id = id;
     input.name = id;
     input.required = true;
+    input.style.fontSize = "16px"; // Evita zoom en iPhone
 
     inputs[id] = input;
 
@@ -40,31 +40,32 @@ export function cargarFormularioAgregarAlumno() {
     form.appendChild(input);
   });
 
+  // SECCIÓN DE BOTÓNES
   const contenedorBotones = document.createElement("div");
   contenedorBotones.classList.add("botones-formulario");
 
   const btnEnviar = document.createElement("button");
-  btnEnviar.type = "button"; // Cambiado a botón normal
+  btnEnviar.type = "button";
   btnEnviar.textContent = "Enviar";
+  contenedorBotones.appendChild(btnEnviar);
 
   const btnCancelar = document.createElement("button");
   btnCancelar.type = "button";
   btnCancelar.id = "cancelar";
   btnCancelar.textContent = "Cancelar";
-
-  contenedorBotones.appendChild(btnEnviar);
   contenedorBotones.appendChild(btnCancelar);
+
   form.appendChild(contenedorBotones);
   ventana.appendChild(form);
   overlay.appendChild(ventana);
-  document.body.appendChild(overlay);
 
-  // Cancelar: eliminar el modal
+  // Cerrar modal
   btnCancelar.addEventListener("click", () => {
+    console.log("❎ Modal cancelado");
     overlay.remove();
   });
 
-  // Validar antes de enviar
+  // Enviar
   btnEnviar.addEventListener("click", async () => {
     const { nombres, apellidos, correo } = inputs;
 
@@ -73,7 +74,7 @@ export function cargarFormularioAgregarAlumno() {
       !apellidos.value.trim() ||
       !correo.value.trim()
     ) {
-      alert("Por favor complete todos los campos antes de enviar.");
+      console.warn("⚠️ Campos incompletos");
       return;
     }
 
@@ -88,28 +89,19 @@ export function cargarFormularioAgregarAlumno() {
         grado_id,
       };
 
-      const registrarUsuario = await fetch(
+      console.log("📤 Datos enviados:", datos);
+      overlay.remove();
+      
+      const res = await fetch(
         "https://asistencia.jossuefuentes.space/reg-alumno",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(datos),
         }
       );
-
-      const resultado = await registrarUsuario.json();
-
-      if (registrarUsuario.ok) {
-        alert("Alumno registrado correctamente. ID: " + resultado.alumnoId);
-        overlay.remove();
-      } else {
-        alert("Error: " + resultado.error);
-      }
     } catch (error) {
-      console.log("Error", error);
-      alert("Error al conectar con el servidor.");
+      console.error("💥 Error de red o JSON:", error);
     }
   });
 
