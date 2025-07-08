@@ -1,0 +1,76 @@
+/* Contenedor general */
+.contenedor-horarios {
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 600px;
+  margin: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+}
+
+/* Título */
+.contenedor-horarios h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* Formulario */
+.formulario-horario {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+/* Etiquetas */
+.formulario-horario label {
+  grid-column: span 2;
+  font-weight: bold;
+  color: #444;
+}
+
+/* Inputs y selects */
+.formulario-horario input,
+.formulario-horario select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
+}
+
+/* Botón agregar */
+.formulario-horario button {
+  grid-column: span 2;
+  padding: 0.8rem;
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.formulario-horario button:hover {
+  background-color: #388E3C;
+  transform: scale(1.03);
+}
+
+/* Lista de horarios */
+.lista-horarios {
+  margin-top: 2rem;
+  list-style: none;
+  padding-left: 0;
+}
+
+.lista-horarios li {
+  background-color: #e7f5ff;
+  padding: 0.8rem;
+  margin-bottom: 0.5rem;
+  border-left: 4px solid #1c7ed6;
+  border-radius: 0.5rem;
+  font-weight: 500;
+}
