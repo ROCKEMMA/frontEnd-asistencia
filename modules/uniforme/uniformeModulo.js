@@ -18,10 +18,10 @@ export function moduloUniforme(nombreUniforme, apiUrl) {
     bloqueUniforme.appendChild(divImagenes);
 
     const prendas = [
-        { nombre: "camisa", src: "../../assets/icos/camisa_ico.jpg" },
-        { nombre: "sueter", src: "../../assets/icos/sueter_ico.png" },
-        { nombre: "pantalon", src: "../../assets/icos/pantalon_ico.png" },
-        { nombre: "zapato", src: "../../assets/icos/zapato_ico.png" }
+        { nombre: "camisa", src: "../assets/icos/camisa_ico.jpg" },
+        { nombre: "sueter", src: "../assets/icos/sueter_ico.png" },
+        { nombre: "pantalon", src: "../assets/icos/pantalon_ico.png" },
+        { nombre: "zapato", src: "../assets/icos/zapato_ico.png" }
     ];
 
     const seleccion = {
