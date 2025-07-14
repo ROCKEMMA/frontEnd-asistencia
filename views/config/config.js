@@ -48,7 +48,7 @@ export function cargarConfigView() {
 
   let user = JSON.parse(localStorage.getItem("usuario")).user.tipo_usuario_id;
 
-  let botones = user == 1 ? botonesVistas1 : botonesVistas2;
+  let botones = user != 3 ? botonesVistas1 : botonesVistas2;
   // condición aqui
 
   const [textos, vistas] = botones;

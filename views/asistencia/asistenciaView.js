@@ -23,6 +23,24 @@ function asistenciaView(){
     divMarcarTodo.innerText = "Todos presentes"
     sectionAsistencia.appendChild(divMarcarTodo);
 
+    const correoAlumnos = [];
+
+    let divCorreoTodos = document.createElement('div');
+    divCorreoTodos.style.border = "1px solid #dd7064";
+    divCorreoTodos.style.height = '2.5rem';
+    divCorreoTodos.innerText = "Enviar correo a seccion"
+    divCorreoTodos.addEventListener('click', () => {
+        const listaCorreos = correoAlumnos.join(',');
+        const subject = encodeURIComponent(`Asunto para la clase`);
+        const body = encodeURIComponent(`Hola,\n\nQuiero enviarte este mensaje referente a la clase .`);
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(listaCorreos)}&su=${subject}&body=${body}`;
+        window.open(gmailUrl, "_blank");
+    });
+    sectionAsistencia.appendChild(divCorreoTodos);
+    
+
+
+
     let iconoAgregarAlumno = document.createElement('img');
     iconoAgregarAlumno.src = "https://raw.githubusercontent.com/ROCKEMMA/assets/bb82b2d7cc9331ceed368217fa820c282a6b68f5/ico_google/person_add.svg";
     iconoAgregarAlumno.className = "ico-agregarAlumno";
@@ -51,9 +69,12 @@ function asistenciaView(){
             let divAlumnos = document.createElement('div');
             divAlumnos.className = "div-alumnos";
             data.forEach(element => {
-                divAlumnos.appendChild(moduloAsistencia(element.nombres,element.estado));
+                divAlumnos.appendChild(moduloAsistencia(element.nombres,element.correo, element.estado));
+                correoAlumnos.push(element.correo);
             });
             sectionAsistencia.appendChild(divAlumnos);
+
+            // codigo para enviar correos a todos
             
             // -----------------------------------------------------------------------
             let consultaEstadoAsistencia = await verificarAsistencia(grado);

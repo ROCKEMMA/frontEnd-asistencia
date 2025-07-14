@@ -1,7 +1,7 @@
 import { cargarCSS } from "../../controles/controlCSS.js";
 import { abrirModalUniforme } from "../uniforme/uniformeModulo.js";
 
-export function moduloAsistencia(nombreAlumno, estado) {
+export function moduloAsistencia(nombreAlumno, correoAlumno, estado) {
   cargarCSS("../modules/asistencia/asistenciaModulo.css");
 
   let div = document.createElement("div");
@@ -52,7 +52,7 @@ export function moduloAsistencia(nombreAlumno, estado) {
     const subject = encodeURIComponent(`Asunto para ${nombreAlumno}`);
     const body = encodeURIComponent(`Hola,\n\nQuiero enviarte este mensaje referente a ${nombreAlumno}.`);
 
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=&su=${subject}&body=${body}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(correoAlumno)}&su=${subject}&body=${body}`;
     window.open(gmailUrl, "_blank");
   });
 
