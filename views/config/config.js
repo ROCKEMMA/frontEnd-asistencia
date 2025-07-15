@@ -28,10 +28,12 @@ export function cargarConfigView() {
 
   const botonesVistas1 = [
     [
-    "Eliminar usuario",
+    "Eliminar Alumno",
     "Agregar usuario",
     "Agregar grado",
     "Establecer horario",
+    "Eliminar profesor",
+    
     ],
     [
       cargarEliminarAlumno(),
