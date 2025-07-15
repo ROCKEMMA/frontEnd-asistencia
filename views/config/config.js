@@ -4,6 +4,7 @@ import { cargarEliminarAlumno } from "../../modules/eliminarAlumno/eliminarAlumn
 import { cargarAgregarUsuario } from "../../modules/agregarUsuiario/agregarUsuarioMoule.js";
 import { cargarAgregarGrado } from "../../modules/agregarGrado/agregarGradoModule.js";
 import { cargarEstablecerHorari } from "../../modules/establecerHorario/establecerHorarioModule.js";
+import { cargarEliminarProfesor } from "../../modules/eliminarProfesor/eliminarProfesor.js";
 
 export function cargarConfigView() {
   cargarCSS("../views/config/config.css");
@@ -28,16 +29,19 @@ export function cargarConfigView() {
 
   const botonesVistas1 = [
     [
-    "Eliminar usuario",
+    "Eliminar Alumno",
     "Agregar usuario",
     "Agregar grado",
     "Establecer horario",
+    "Eliminar usuario",
+    
     ],
     [
       cargarEliminarAlumno(),
       cargarAgregarUsuario(),
       cargarAgregarGrado(),
       cargarEstablecerHorari(),
+      cargarEliminarProfesor(),
     ]
   ]
 

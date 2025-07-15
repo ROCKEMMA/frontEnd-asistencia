@@ -1,10 +1,11 @@
 import { cargarCSS } from "../../controles/controlCSS.js";
 
-export function moduloUniforme(nombreUniforme, apiUrl) {
+export function moduloUniforme(nombreUniforme, correoAlumno, apiUrl) {
     cargarCSS('../modules/uniforme/uniformeModulo.css');
 
     const bloqueUniforme = document.createElement('div');
     bloqueUniforme.className = "div-uniforme";
+    let textoPredeterminado = "";
 
     // Título
     const textoUniforme = document.createElement('p');
@@ -94,6 +95,7 @@ export function moduloUniforme(nombreUniforme, apiUrl) {
                 textareaObs.style.display = "block";
                 if(textareaObs.value.trim() === "") {
                     textareaObs.value = textosPredeterminados[prenda.nombre];
+                    textoPredeterminado = textosPredeterminados[prenda.nombre];
                 }
                 img.classList.add('seleccionado');
             }
@@ -108,50 +110,6 @@ export function moduloUniforme(nombreUniforme, apiUrl) {
     informacion.placeholder = "Escribe tu mensaje general aquí...";
     bloqueUniforme.appendChild(informacion);
 
-    // Botón registrar
-    const botonRegistro = document.createElement('button');
-    botonRegistro.className = "boton1";
-    botonRegistro.innerText = "Registrar";
-
-    botonRegistro.addEventListener('click', async () => {
-        // Crear objeto con observaciones solo para prendas seleccionadas
-        const observacionesPrendas = {};
-        for (const prenda of prendas) {
-            if (seleccion[prenda.nombre]) {
-                observacionesPrendas[prenda.nombre] = textareasObservacion[prenda.nombre].value.trim();
-            }
-        }
-
-        // Datos que se enviarán al backend
-        const datos = {
-            alumno: nombreUniforme,
-            camisa: seleccion.camisa,
-            sueter: seleccion.sueter,
-            pantalon: seleccion.pantalon,
-            zapato: seleccion.zapato,
-            observacionesPrendas: observacionesPrendas,
-            mensaje: informacion.value.trim()
-        };
-
-        try {
-            const res = await fetch(apiUrl, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(datos)
-            });
-
-            if (res.ok) {
-                alert("Datos enviados correctamente.");
-            } else {
-                alert("Error al enviar datos.");
-            }
-        } catch (err) {
-            console.error(err);
-            alert("Fallo la conexión con el servidor.");
-        }
-    });
 
     // Botón para enviar correo (puedes implementar la lógica)
     const botonEnviarCorreo = document.createElement('button');
@@ -162,7 +120,14 @@ export function moduloUniforme(nombreUniforme, apiUrl) {
     const contenedorBotones = document.createElement('div');
     contenedorBotones.className = 'contenedor-botones';
 
-    contenedorBotones.appendChild(botonRegistro);
+    botonEnviarCorreo.addEventListener("click", () => {
+    const subject = encodeURIComponent(`Reporte uniforme - ${nombreUniforme}`);
+    const body = encodeURIComponent(`Hola,\n\nReporte de uniforme: ${textoPredeterminado}. \n\n${informacion.value}`);
+
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(correoAlumno)}&su=${subject}&body=${body}`;
+    window.open(gmailUrl, "_blank");
+  });
+
     contenedorBotones.appendChild(botonEnviarCorreo);
 
     bloqueUniforme.appendChild(contenedorBotones);
@@ -170,7 +135,7 @@ export function moduloUniforme(nombreUniforme, apiUrl) {
     return bloqueUniforme;  // solo devuelves el nodo, no lo insertas en el DOM
 }
 
-export function abrirModalUniforme(nombreUniforme, apiUrl) {
+export function abrirModalUniforme(nombreUniforme, correoAlumno, apiUrl) {
     if (document.querySelector('.overlay-uniforme')) return;
 
     const overlay = document.createElement('div');
@@ -183,7 +148,7 @@ export function abrirModalUniforme(nombreUniforme, apiUrl) {
     const ventana = document.createElement('div');
     ventana.className = 'ventana-Uniforme';
 
-    const bloqueUniforme = moduloUniforme(nombreUniforme, apiUrl);
+    const bloqueUniforme = moduloUniforme(nombreUniforme,correoAlumno, apiUrl);
     ventana.appendChild(bloqueUniforme);
 
     overlay.appendChild(ventana);
