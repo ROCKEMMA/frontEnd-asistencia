@@ -39,7 +39,7 @@ export function moduloAsistencia(nombreAlumno, correoAlumno, estado) {
       divUniforme.classList.replace("sinObservacion", "conObservacion");
     }
 
-    abrirModalUniforme(nombreAlumno, "/api/uniforme");
+    abrirModalUniforme(nombreAlumno, correoAlumno, "/api/uniforme");
   });
   div.appendChild(divUniforme);
   // -------------------------------------------------------------

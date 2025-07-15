@@ -4,6 +4,7 @@ import { cargarEliminarAlumno } from "../../modules/eliminarAlumno/eliminarAlumn
 import { cargarAgregarUsuario } from "../../modules/agregarUsuiario/agregarUsuarioMoule.js";
 import { cargarAgregarGrado } from "../../modules/agregarGrado/agregarGradoModule.js";
 import { cargarEstablecerHorari } from "../../modules/establecerHorario/establecerHorarioModule.js";
+import { cargarEliminarProfesor } from "../../modules/eliminarProfesor/eliminarProfesor.js";
 
 export function cargarConfigView() {
   cargarCSS("../views/config/config.css");
@@ -32,7 +33,7 @@ export function cargarConfigView() {
     "Agregar usuario",
     "Agregar grado",
     "Establecer horario",
-    "Eliminar profesor",
+    "Eliminar usuario",
     
     ],
     [
@@ -40,6 +41,7 @@ export function cargarConfigView() {
       cargarAgregarUsuario(),
       cargarAgregarGrado(),
       cargarEstablecerHorari(),
+      cargarEliminarProfesor(),
     ]
   ]
 
